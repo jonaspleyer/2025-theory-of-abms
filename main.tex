@@ -421,7 +421,8 @@ Similarly, other \acp{ca} such as the Cellular Potts Model~\cite{Graner1992} or 
 184~\cite{Krug1988} can not
 directly be translated into an \ac{cabm}.
 This shows that even the fundamental choices in the design of \acp{cabm} already present interesting
-restrictions and \acp{ca} should in general not be treated as special cases of \acp{cabm}.
+restrictions and \acp{ca} should in general not be treated as special cases of \acp{cabm} but as
+distinct entities.
 
 \begin{figure}
     \centering
@@ -461,8 +462,44 @@ restrictions and \acp{ca} should in general not be treated as special cases of \
 \end{figure}
 
 This statement can be generalized to the class of elementary \acp{ca}~\cite{Wolfram1983}.
+The statement of the following theorem relies on a number of assumptions.
+We assume that during the advancement of the \ac{ca} only one of two processes is triggered:
+division or death.
+The particular reason for any one of them is not taken into account as this depends on which
+problem is being modeled.
+We explicitly exclude other processes such as stochastic effects and spatial movement
+(compare Table~\ref{tab:cellular-aspects}).
 
 \begin{theorem}[Elementary \aclp{ca} are not cell-based]
+    Elementary \acp{ca} are characterized by their transition rules.
+    In total there are $8$ states from which the next value is determined.
+    To simplify notation, the Wolfram Code (Figure~\ref{fig:wolfram-code}) was
+    proposed~\cite{Wolfram1994-yw}.
+    \begin{figure}[h]
+        \centering
+        \begin{tabular}{ r c c c c c c c c }
+            Current State & $111$ & $110$ & $101$ & $100$ & $011$ & $010$ & $001$ & $000$\\
+            \hline
+            New pattern & $a_8$ & $a_7$ & $a_6$ & $a_5$ & $a_4$ & $a_3$ & $a_2$ & $a_1$\\
+            Reduced     & $a_8$ & $b$   & $a_6$ & $c$   & $b$   & $a_3$ & $c$   & $0$
+        \end{tabular}
+        \caption{
+            Elementary \acp{ca} can be characterized by their transition rules.
+            The binary number $a_8\dots a_1$ converted to decimal, results in the rule number of
+            the associated \ac{ca} (i.e. $01101110_2=110_d$).
+            There exist $256$ rules in total.
+        }
+        \label{fig:wolfram-code}
+    \end{figure}
+    We fist inspect the last transition rule $000\rightarrow a_1$ which presents an empty subspace
+    (no cells existing) and advances it.
+    If $a_1=1$, we would create a new cell from nothing.
+    This is contrary to the biological reality in which cells divide and reproduce.
+    We can infer, that \acp{ca} which have $a_1=1$ are not cell-based.
+    Furthermore, due to the isotropy of space, we expect that all initial states deliver identical
+    results to their mirrored version which requires $a_7=a_4$ and $a_5=a_2$.
+    These considerations reduce the total number of possible rules to $2^5=32$.
+
     \begin{itemize}
         \item Show for all Wolfram Rules that most of them can not be cell-based models
         \item Consider migration as an additional rule instead of just division and death
