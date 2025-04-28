@@ -273,10 +273,11 @@ necrosis~\cite{Gerschenson2001} (ie. through injury).
 How to describe such a transition will be discussed in chapter~\ref{section:dynamics}.
 
 \begin{definition}[Cell Death]
-    TODO
+\todo{
     - apoptosis
     - necrosis
     - removal
+}
 \end{definition}
 
 \begin{lemma}[Cell Lineage]
@@ -346,14 +347,19 @@ We often write $\phi(t,m) = \phi_t(m)$.
     Suppose $f:T_\iota\rightarrow\{0,1\}$ is continous.
     Without loss of generality we can assume that there exists a value $t\in T_\iota$ such that
     $f(t)=1$.
-    TODO
+    \todo{finish proof}
 \end{proof}
 
 %###################################################################################################
 \section{Comparison with \aclp{ca}}
 \label{section:comparison-with-ca}
-Classical \acp{ca} such as Conway's Game of Life \cite{Graner1992} or the Cellular Potts Model
-\cite{games1970fantastic} are spatially and temporally discrete dynamical systems.
+Classical \acp{ca} such as Conway's Game of Life \cite{games1970fantastic} \todo{MORE CITATIONS}
+% or the Cellular Potts Model \cite{Graner1992}
+are spatially and temporally discrete dynamical systems.
+\todo{More details about \acp{ca}}
+\todo{Cells are not tracable through time and space}
+\todo{division and death}
+\todo{distinction to migration not clear}
 In the case of \acp{abm} the space $M$ consists of the collection of all currently living cells
 $\mathscr{C}$ and the physical domain $D$ in which they live ie. $M=\mathscr{C}\times D$.
 
@@ -484,9 +490,9 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
         \centering
         \begin{tabular}{ r c c c c c c c c }
             Current State & $111$ & $110$ & $101$ & $100$ & $011$ & $010$ & $001$ & $000$\\
-            \hline
-            New pattern & $a_8$ & $a_7$ & $a_6$ & $a_5$ & $a_4$ & $a_3$ & $a_2$ & $a_1$\\
-            Reduced     & $a_8$ & $b$   & $a_6$ & $c$   & $b$   & $a_3$ & $c$   & $0$
+            \midrule
+            New State & $a_8$ & $a_7$ & $a_6$ & $a_5$ & $a_4$ & $a_3$ & $a_2$ & $a_1$\\
+            % Reduced     & $a_8$ & $b$   & $a_6$ & $c$   & $b$   & $a_3$ & $c$   & $0$
         \end{tabular}
         \caption{
             Elementary \acp{ca} can be characterized by their transition rules.
@@ -496,6 +502,8 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
         }
         \label{fig:wolfram-code}
     \end{figure}
+\end{theorem}
+\begin{proof}
     We fist inspect the last transition rule $000\rightarrow a_1$ which presents an empty subspace
     (no cells existing) and advances it.
     If $a_1=1$, we would create a new cell from nothing.
@@ -513,9 +521,32 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
         \item Additional question: Is this procedure deterministic? (It should not have to be
             deterministic imho)
     \end{itemize}
-\end{theorem}
-\begin{proof}
 \end{proof}
+
+\subsection{Scaling Behaviour}
+
+\begin{figure}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \begin{tabular}{lccc}
+            Neighborhood & Dimension & Step & Scaling\\
+            \midrule
+            1D                  & $1$ & $1$ & $2n+1$\\
+            2D Moore            & $2$ & $1$ & $(2n+1)^2$\\
+            2D von Neumann      & $2$ & $1$ & $2n(n+1)+1$\\
+            d-Dim Moore         & $d$ & $1$ & $(2n+1)^d$\\
+            d-Dim von Neumann   & $d$ & $1$ & \todo{calculate it}\\
+            d-Dim Moore  & $d$ & $k$ & $(2kn+1)^d$\\
+            d-Dim von Neumann & $d$ & $k$ & \todo{calculate it}
+        \end{tabular}
+        \caption{\todo{add caption}}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[width=\textwidth]{ca-rules/single1/rule-054.png}
+        \caption{\todo{insert new image of various scalings; caption for image}}
+    \end{minipage}
+    \label{fig:ca-scaling}
+\end{figure}
 
 \begin{theorem}[]
 \end{theorem}
@@ -523,7 +554,7 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
 \end{proof}
 
 %###################################################################################################
-\section{Spatial Decomposition}
+\section{Spatial Locality}
 \label{section:spatial-decomposition}
 We assume that the physical domain $D$ can be split into smaller subdomains
 $\bigcup_{i\in I}S_i=D$ which are pairwise disjoint.
@@ -717,11 +748,57 @@ We take this as the basis for calculating forces between cells.
 \subsection{Semi-Vertex Model}
 \label{subsection:semi-vertex-model}
 
+%###################################################################################################
+\section{Renormalization}
+\label{section:renormalization}
+
+\todo{Think about this}
+\url{https://en.wikipedia.org/wiki/Functional_renormalization_group}
+
+%###################################################################################################
+\section{Ergodicity}
+\label{section:ergodicity}
+
+\todo{Think about this}
+\url{https://en.wikipedia.org/wiki/Ergodicity}
+
+let $(X, B)$ be a measurable space and for each $t\in\R$ then such a system is given by a family
+$T_t$ of measruable functions from $X$ to itself, so that for any $t,s\in\R_+$, the relation
+$T_{s+t}=T_s\circ T_t$ holds.
+If $\mu$ is a probability measure on $(X, B)$ then we say that $T_t$ is $\mu$-ergodic or $\mu$ is an
+ergodic measure for $T$ if each $T_t$ preserves $\mu$ and the following condition holds:
+
+For any $A\in B$, if for all $t\in\R_+$ we have $T_t^{-1}(A)\subset A$ then either $\mu(A)=0$ or
+$\mu(A)=1$.
+
+
+\todo{include images from fractal dimension calculation}
+\begin{itemize}
+    \item Introduce variable $k$ which represents some type of "cutoff"
+    \item everything below this cutoff is either not considered or somehow approximated by a
+        coarse-grained model
+    \item One can argue that all \acp{abm} live with some type of cutoff $k$ which makes it
+        completely natural for not only \acp{abm} but other models as well
+    \item Try to formalize how the "Running" of such a cutoff could be implemented and how the
+        results could be calculated.
+    \item If we consider $k$ to be spatial only, moving to a more "coarse" value will mean that
+        neighbors are only interacting on their very edges of boundaries.
+        This shows that coarser values of $k$ for the spatial component also allow us to consider
+        coarser values for the time increment.
+\end{itemize}
+
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
 \section{Supplementary Material}
 \subsection{Elementary CA}
+Section~\ref{section:comparison-with-ca} formulates conditions for elementary \acp{ca} in order to
+represent cellular systems.
+In this section, we display results for the remaining non-trivial results for \acp{ca} that fall
+under this category.
+Figure~\ref{fig:supplement:ca-rules-single} shows the result of advancing a \ac{ca} from one single
+living cell while Figure~\ref{fig:supplement:ca-rules-double-close} does the same for two living
+cells which are separated by only one unoccupied space.
 
 \begin{figure}
     \centering
@@ -738,7 +815,7 @@ We take this as the basis for calculating forces between cells.
     \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-182.png}\hspace{0.01\textwidth}%
     \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-222-254.png}%
     \hspace{0.01\textwidth}%
-    \caption{}% TODO
+    \caption{\todo{fill caption}}
     \label{fig:supplement:ca-rules-single}
 \end{figure}
 
@@ -763,7 +840,7 @@ We take this as the basis for calculating forces between cells.
     \hspace{0.01\textwidth}%
     \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-254.png}%
     \hspace{0.01\textwidth}%
-    \caption{}% TODO
+    \caption{\todo{fill caption}}
     \label{fig:supplement:ca-rules-double-close}
 \end{figure}
 
