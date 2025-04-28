@@ -17,6 +17,7 @@
 \usepackage{acronym}
 \usepackage{listings}
 \usepackage{tikz}
+\usepackage[dvipsnames]{xcolor}
 
 \usetikzlibrary{trees}
 
@@ -24,6 +25,10 @@
 \newacro{cabm}[CABM]{Cellular Agent-Based Model}
 \newacro{ca}[CA]{Cellular Automaton}
 \newacroplural{ca}[CA]{Cellular Automata}
+
+\newcommand{\todo}[1]{\colorbox{WildStrawberry}{\textcolor{white}{#1}}}
+
+\newcommand{\R}{\mathtt{R}}
 
 \title{
     Mathematical Foundations of\\
