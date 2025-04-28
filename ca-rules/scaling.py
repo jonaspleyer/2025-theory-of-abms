@@ -64,10 +64,6 @@ if __name__ == "__main__":
     x = np.arange(20)
 
     linestyles = ["-", "-", "--", ":", "-."]
-    ax.plot(x, moore_1d(x), label="1D", c=COLOR1, linestyle=":")
-    ax.plot(x, exponential(x), label="Exponential $2^n$", c=COLOR4)
-    ax.plot(x, moore_2d(x), label="2D Moore", c=COLOR1, linestyle="--")
-    ax.plot(x, neumann_2d(x), label="2D von Neumann", c=COLOR5, linestyle="--")
     ax.plot(x, moore_dDim(x, 3), label="3D Moore", c=COLOR1, linestyle="-")
     ax.plot(
         x,
@@ -76,6 +72,10 @@ if __name__ == "__main__":
         c=COLOR5,
         linestyle="-",
     )
+    ax.plot(x, moore_2d(x), label="2D Moore", c=COLOR1, linestyle="--")
+    ax.plot(x, neumann_2d(x), label="2D von Neumann", c=COLOR5, linestyle="--")
+    ax.plot(x, moore_1d(x), label="1D", c=COLOR1, linestyle=":")
+    ax.plot(x, exponential(x), label="Exponential $2^n$", c=COLOR4)
 
     ax.set_yscale("log")
     ax.set_xlabel("Iterations")
