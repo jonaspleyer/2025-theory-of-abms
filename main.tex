@@ -379,6 +379,12 @@ $\iota\in\phi_t$}
     $\gamma(h)\in T_\iota\forall h\in [0,1]$.
 \end{proof}
 
+\todo{practial implementations of Index choosing}
+\begin{enumerate}
+    \item Assign via voxel and counting
+    \item Assign via parent
+\end{enumerate}
+
 %###################################################################################################
 \section{Comparison with \aclp{ca}}
 \label{section:comparison-with-ca}
@@ -780,6 +786,15 @@ We take this as the basis for calculating forces between cells.
 %###################################################################################################
 \section{Renormalization}
 \label{section:renormalization}
+
+\begin{enumerate}
+    \item Lotka-Volterra Equations: Implement as \ac{abm} and show how to coarse-grain it in order
+        to reobtain the desired equations.
+    \item Coarse-graining of bacterial-branching: Use multiple agents as one: how do parameters
+        change
+    \item Compare to Thermodynamics (intensive vs extensive properties, rescaling of system)
+    \item Try to formalize it by introducing some type of cutoff $k$ below which we cannot "see"
+\end{enumerate}
 
 \todo{Think about this}
 \url{https://en.wikipedia.org/wiki/Functional_renormalization_group}
