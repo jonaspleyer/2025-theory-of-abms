@@ -357,25 +357,26 @@ $\iota\in\phi_t$}
 
 \begin{lemma}[Cellular Identity]
     \label{thm:cellular-uniqueness}
-    Given an index $\iota\in I$, we define the \textbf{Life-Span} of $\iota$ which is the set of all
-    time-points for which this index exists 
+    Given an index $\iota\in I$ to an initial state $x$ of an \ac{abm}, we define the
+    \textbf{Life-Span} of $\iota$ which is the set of all time-points for which the cell is alive
     \begin{equation}
-        T_\iota=\{t\in T: \iota\in\phi_t(x_0)\}.
+        T_\iota=\{t\in T: c_\iota \text{ is alive}\}.
     \end{equation}
-    Let $T$ be a locally connected topological space.
-    Then $T_j$ is connected.
-    If $T$ is a metric space, we also define the \textbf{Lifetime} via
+    If $T$ be a ordered and path-connected topological space, then $T_\iota$ is also path-connected.
+    If $\mu$ is a measure on $T$, we also define the \textbf{Lifetime} with respect to this measure
+    via
     \begin{equation}
-        t_\iota:=\sup\left(\{d(s,t)|s,t\in T_\iota\}\cup\{0\}\right).
+        t_\iota:=\mu\left(T_\iota\right).
     \end{equation}
+    In practial examples, $\mu$ will be given by the Lebesgue measure.
 \end{lemma}
 \begin{proof}
-    We prove this theorem by showing that all continuous functions from $T_\iota$ to $\{0,1\}$ are
-    constant.
-    Suppose $f:T_\iota\rightarrow\{0,1\}$ is continous.
-    Without loss of generality we can assume that there exists a value $t\in T_\iota$ such that
-    $f(t)=1$.
-    \todo{finish proof}
+    Let $t<s\in T_\iota$ arbitrary.
+    We pick a path $\gamma:[0,1]\rightarrow T$ from $t$ to $s$.
+    Since $T$ is ordered, we can pick a path which satisfies $t\leq\gamma(h)\leq s$.
+    By Definition~\ref{definition:cell-division}, properties 1 and 4, we see that every state
+    between the points of insertion and removal are part of $T_\iota$ and thus
+    $\gamma(h)\in T_\iota\forall h\in [0,1]$.
 \end{proof}
 
 %###################################################################################################
