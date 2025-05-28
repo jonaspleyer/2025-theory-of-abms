@@ -81,6 +81,7 @@ def save_rule(total, rules, folder: Path):
     if np.sum(total[1:]) > 0 and np.any(total[1] != total[0]):
         folder.mkdir(parents=True, exist_ok=True)
         img = Image.fromarray(255 * total.astype(np.uint8))
+        img.save(folder / f"rule-{name}.pdf", dpi=(300, 300))
         img.save(folder / f"rule-{name}.png", dpi=(300, 300))
 
 
