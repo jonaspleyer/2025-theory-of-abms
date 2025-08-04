@@ -306,12 +306,12 @@ We will discuss this in the chapter~\ref{section:dynamics}.
 In our agent-based approach, the end of this transition removes the old cell and inserts the new
 daughter cells.
 
-\begin{definition}[Cell Division]
-    \label{definition:cell-division}
-    We call a map $\gamma:C\rightarrow \cup_{n\geq 2}C^n$ a division function and
+\begin{definition}[Single Cell Division]
+    \label{definition:cell-division-single}
+    We call a map $\gamma:C\rightarrow \cup_{n\geq 2}C^n$ a single division function and
     $\Upsilon:\{\gamma:C\rightarrow \cup_{n\geq 2}C^n\}\times I\times\mathscr{C}\rightarrow\mathscr{C}$ a 
-    division operator if for any initial state $(I_p,M)\in\mathscr{C}$ with $d_i\in M$ and final
-    state $(J_p,N)=\Upsilon(\eta,i,(I_p,M))$
+    single division operator if for any initial state $(I_p,M)\in\mathscr{C}$ with $d_i\in M$ and
+    final state $(J_p,N)=\Upsilon(\eta,i,(I_p,M))$
     \begin{enumerate}
         \item (Removal) Exactly one cell is removed $M\backslash N=\{d_i\}$
         \item (Insertion) At least two new cells are created:
@@ -324,6 +324,18 @@ daughter cells.
     cell over the course of the total time of our system.
 \end{definition}
 
+\begin{definition}[Cell Division]
+    \label{definition:cell-division}
+    A division function $\gamma$ is the concatenation of single division functions
+    $\{\gamma_i,i\in I\}$.
+    We require that the overall effect is independent of the order of their individual applications,
+    ie.
+    \begin{equation}
+        \prod\limits_{i_j\in I}\gamma_{i_j} = \prod\limits_{i\in I}\gamma_i
+    \end{equation}
+    where the product is with respect to the concatenation of maps.
+\end{definition}
+
 It is important to note that while this definition seems cumbersome in the first place, it is
 essential in upkeeping a valid cellular state.
 From an application standpoint, it is desirable to only specify the division map $\gamma$ and have
@@ -331,11 +343,21 @@ $\Upsilon$ be defined by the underlying modeling framework.
 
 Another important process is that of cell death which is similarly as cell-division not instantanous
 but occurs over a period of time.
-Most commonly known death schemes are apoptosis~\cite{Kerr1965} (planned cell death) and
-necrosis~\cite{Gerschenson2001} (ie. through injury).
-How to describe such a transition will be discussed in chapter~\ref{section:dynamics}.
+Death schemes are categoritzed into programmed cell-death, also known as apoptosis~\cite{Kerr1965}
+and necrosis~\cite{Gerschenson2001} which occurrs due to damage from external effects.
+In principle, these processes take time in order to commence and the cell may interact with its
+environment (ie. through secretion) during this stage.
+Such transitions can be described by \todo{fill this} and will be discussed in
+chapter~\ref{section:dynamics}.
+Once the process of dying is over, the cell is removed.
 
 \begin{definition}[Cell Death]
+    \label{definition:cell-death}
+    % We call a map $\zeta:I_p\rightarrow \text{Pot}(I_p)$ a death-function
+    Any cell-death removes a particular index $\iota\in I_p$.
+    Thus the combination of many cell-daths is a mapping $\zeta:I_p\rightarrow \text{Pot}(I_p)$
+    where $\text{Pot}(I_p)$ is the power set of $I_p$.
+
 \todo{
     - apoptosis
     - necrosis
@@ -367,7 +389,8 @@ How to describe such a transition will be discussed in chapter~\ref{section:dyna
     or division.
 \end{proof}
 \begin{corollary}[$k$-ary and Binary Cell Division]
-    In the case where the division function $\eta:C\rightarrow C^k\subset\cup_{n\in\mathbb{N}}C^n$
+    In the case where the single division function
+    $\eta:C\rightarrow C^k\subset\cup_{n\in\mathbb{N}}C^n$
     is of k-ary nature, lemma~\ref{lemma:cell-lineage} retains a k-ary tree.
     The most common biological reality is the binary case.
 \end{corollary}
@@ -406,6 +429,8 @@ Thus we define our dynamical system to be of this shape.
 
 It is of importance to consider the domain as part of the dynamical system such that interactions
 of the agents with it can permanently alter its constitution.
+In this way, extracellular constituents can interact and change and even the overall morphology of
+the domain could be affected by dynamics and interactions.
 
 \begin{example}[Predator Prey]
     \todo{Implement this}
