@@ -888,20 +888,50 @@ We take this as the basis for calculating forces between cells.
 \label{subsection:semi-vertex-model}
 
 %###################################################################################################
-\section{Renormalization}
+\section{Coarse-Graining Strategies}
 \label{section:renormalization}
 
+\subsection{Bacterial Branching}
+
 \begin{enumerate}
+    \item Viewpoint from various scales is inherent for \acp{abm}
     \item Lotka-Volterra Equations: Implement as \ac{abm} and show how to coarse-grain it in order
         to reobtain the desired equations.
+    \item Do the same with logistic growth?
     \item Coarse-graining of bacterial-branching: Use multiple agents as one: how do parameters
         change
     \item Compare to Thermodynamics (intensive vs extensive properties, rescaling of system)
     \item Try to formalize it by introducing some type of cutoff $k$ below which we cannot "see"
 \end{enumerate}
 
+\begin{figure}[h]
+    \includegraphics[width=0.5\textwidth]{figures/fractal-dim-box-size-scaling.pdf}%
+    \includegraphics[width=0.5\textwidth]{figures/fractal-dim-over-time.pdf}%
+    \caption{
+        (A) The bacterial branching simulation satisfies the conditions for a self-similar fractal.
+        (B) The fractal dimension is not constant in time, but follows a growth curve with upper
+        bound.
+    }
+    \label{fig:bacterial-brancing-fractal-dimension}
+\end{figure}
+
 \todo{Think about this}
 \url{https://en.wikipedia.org/wiki/Functional_renormalization_group}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\textwidth]{figures/sim-branching/cells_at_iter_0000006600.png}%
+    \hspace{0.01\textwidth}%
+    \includegraphics[width=0.49\textwidth]{figures/sim-branching/diffusion-80/discretization-nvoxels-000666.png}\\%
+    \includegraphics[width=0.49\textwidth]{figures/sim-branching/diffusion-80/discretization-nvoxels-000080.png}%
+    \hspace{0.01\textwidth}%
+    \includegraphics[width=0.49\textwidth]{figures/sim-branching/diffusion-80/discretization-nvoxels-000042.png}%
+    \caption{
+        (A) Final simulation snapshot.
+        (B-D) Coarse-graining with increasing voxel size.
+    }
+    \label{fig:fractal-dimension-voxel-size}
+\end{figure}
 
 %###################################################################################################
 \section{Ergodicity}
@@ -950,43 +980,43 @@ cells which are separated by only one unoccupied space.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-018-090-146-218.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-018-090-146-218.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-022.png}\hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-050-122-178-250.png}\\
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-022.pdf}\hspace{0.01\textwidth}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-050-122-178-250.pdf}\\
     \vspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-054.png}\hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-094.png}\hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-126.png}\\
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-054.pdf}\hspace{0.01\textwidth}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-094.pdf}\hspace{0.01\textwidth}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-126.pdf}\\
     \vspace{0.01\textwidth}
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-150.png}\hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-182.png}\hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-222-254.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-150.pdf}\hspace{0.01\textwidth}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-182.pdf}\hspace{0.01\textwidth}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/single1/rule-222-254.pdf}%
     \hspace{0.01\textwidth}%
     \caption{\todo{fill caption}}
     \label{fig:supplement:ca-rules-single}
 \end{figure}
 
 \begin{figure}[h]
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-018-090-146-218.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-018-090-146-218.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-022.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-022.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-050-122-178-250.png}\\%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-050-122-178-250.pdf}\\%
     \vspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-054.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-054.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-094.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-094.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-126.png}\\%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-126.pdf}\\%
     \vspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-150.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-150.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-182.png}\\%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-182.pdf}\\%
     \vspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-222.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-222.pdf}%
     \hspace{0.01\textwidth}%
-    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-254.png}%
+    \includegraphics[width=0.32\textwidth]{ca-rules/double1-close/rule-254.pdf}%
     \hspace{0.01\textwidth}%
     \caption{\todo{fill caption}}
     \label{fig:supplement:ca-rules-double-close}
