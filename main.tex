@@ -10,6 +10,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{amsfonts}       % blackboard math symbols
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{makecell}
 \usepackage{microtype}      % microtypography
 \usepackage{mathrsfs}
 \usepackage{graphicx}
@@ -21,9 +22,13 @@
 
 \usetikzlibrary{trees}
 
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\def\cross{\tikz\draw[scale=0.3, black, line width=0.3mm](0,0) -- (1,1) -- (0.5,0.5) -- (0,1) -- (1,0) -- (0.5,0.5);}
+
 \newacro{abm}[ABM]{Agent-Based Model}
 \newacro{cabm}[CABM]{Cellular Agent-Based Model}
 \newacro{ca}[CA]{Cellular Automaton}
+\newacro{ib}[IB]{Individual-Based}
 \newacroplural{ca}[CA]{Cellular Automata}
 
 \newcommand{\todo}[1]{\colorbox{WildStrawberry}{\textcolor{white}{#1}}}
@@ -108,46 +113,101 @@ pdfkeywords={},
 
 %###################################################################################################
 \begin{abstract}
+    In this work, we lay out fundamental theoretical concepts of \ac{ib} \acp{abm} and argue why
+    classical \acp{ca} should not generally be considered \ac{ib} \acp{abm}.
+    We show that these concepts can encapsulate a wide class of available numerical simulation tools
+    Furthermore, we present precise mathematical formulations of widely used examples such as
+    cell-sorting and cell-cell communication.
+    Extending our theoretical work, we discuss the process of spatial and remporal coarse-graining.
 \end{abstract}
 
-
 % keywords can be removed
-\keywords{Agent-Based \and Cell \and Biology \and Dynamical System}
+\keywords{Individual-Based \and Cell \and Biology \and Dynamical System}
 
 %###################################################################################################
 \section{Introduction}
-\label{section:introduction}
-Over the course of the last decades, many cellular \acp{abm} have been proposed and implemented
-\cite{PoncedeLeon2022,Hoehme2010,Lupperger2020}.
+Over the course of the last decades, many \acp{cabm} have been proposed and
+implemented~\cite{Pleyer2023}.
 Their puposes range from early embryogenesis to cancer research over to wound
 healing~\cite{Ziraldo2013}.
 Some of these models provide exact mathematical formulations \cite{Ghaffarizadeh2018,Tanaka2015} of
 the system which they solve.
 Although it is well-known that \acp{abm} and \acp{ca} are a subclass of (continous or discrete)
-dynamical systems \cite{Wolfram1984} there has not yet been a directed effort towards a unifying
-mathamtical formalism for \acp{cabm}.
-We aim to provide insights into a variety of shared concepts along specific examples with real
-use-cases.
-We construct this formalism along the implementation of our numerical simulation framework
-\lstinline{cellular_raza}~\cite{Pleyer_cellular_raza_2024}.
+dynamical systems \cite{Wolfram1984} so far \acp{ca} have been studied mathematically to great
+extent while \acp{cabm} remain largely untouched on a conceptual level.
+We aim to provide insights into a variety of shared concepts among many \acp{cabm} and explain them
+along specific examples with real use-cases.
+We construct this formalism with the same thought processes that lead to the creation of our
+numerical simulation framework \lstinline{cellular_raza}~\cite{Pleyer_cellular_raza_2024}.
 
 \acp{abm} are centered around the thought that cells are the fundamental building-blocks of nature.
-Every cellular agent is distinct to any other and can in principle be tracked throughout space and
-time.
-The individual behaviour of cells results in the emergence of global phenomena such as spatial or
-temporal patterns \cite{Owen2020,Wolpert1969,Giudicelli2007}.
-The cells are part of the physical domain and may interact with it in various ways eg. via exchange
-of Ligands or physical forces.
-Furthermore, cells interact with each other directly.
+Every cellular agent must be assumed to be distinct to any other and can in principle (although hard
+in practice) be traced throughout space and time.\todo{CITATION}
+The combined individual behaviours of many cells can result in the emergence of global phenomena
+such as spatial or temporal patterns \cite{Owen2020,Wolpert1969,Giudicelli2007}.
+
+\begin{itemize}
+    \item (C) Cellular Processes
+    \item (CC) Cell-Cell Interactions
+    \item (DC) Domain-Cell Interactions
+\end{itemize}
+
+The cells live within the physical domain and may interact with it in various ways eg. via exchange
+of nutrients or via physical forces.
+Furthermore, cells can interact with each other directly.
 Most of these interactions are of short range compared to the total size of the system although
 counter-examples such as electrical signals exist \cite{Ded2021}.
+
+\begin{itemize}
+    \item Local interactions
+    \item Same as Neighborhoods in \acp{ca}
+\end{itemize}
+
+\todo{maybe insert this later?}
 We explicitly note that our assumptions are not fundamental and loosening of these restrictions can
 be discussed to possibly cover a wider variety of problems.
 It is important to consider these limitations when applying this theoretical framework.
 
+\begin{itemize}
+    \item What has been done so far?
+    \item List cellular \acp{abm} and say which have some mathematical support
+    \item List papers of applications with explicit mathematical formulations
+    \item Discuss which of the application papers are "implementations" of the abstract frameworks
+\end{itemize}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        \acs{abm} & \makecell[c]{Mathematical\\ Formulation} & \makecell{Individual-\\ Based} & Extensibility\\
+        \midrule
+        Biocellion~\cite{Kang2014} & \cross & \checkmark &\\
+        BSim~\cite{Gorochowski2012} & ? & \checkmark &\\
+        Chaste (cell-based)~\cite{Cooper2020} & \checkmark & \checkmark &\\
+        CompuCell3D~\cite{Swat2012} & \checkmark & \cross \\
+        EPISIM~\cite{Aghaallaei2021} \\
+        Morpheus~\cite{Starru2014} & ? & (\checkmark) & ?\\
+        MultiCellSim~\cite{Dang2020}\\
+        PhysiCell~\cite{Ghaffarizadeh2018} & \checkmark & \checkmark & \\
+        TSim/CellSys~\cite{Hoehme2010}\\
+        VirtualLeaf~\cite{Merks2011}\\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Various \acp{abm} and their mathematical descriptiveness.
+        \todo{make better}
+    }
+\end{table}
+
 %###################################################################################################
 \section{The Cellular Space $\mathscr{C}$}
-\label{section:cellular-space}
+This section aims to construct a space in which individual cells can be represented.
+We construct these notions purely from known biological behavioural principles.
+By formulating these concepts in abstract mathematical terms, we allow ourselves to cover a wide
+variety of \acp{abm}.
+It is clear that this approach targets models on the mesoscopic scale such that not every
+fundamental effect can be taken into account.
+
 We assume that each individual cell lives in a set $C$ which describes all possible configurations
 of this single cell.
 Cellular systems are characterized by the fact that cells are in principle (although in
