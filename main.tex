@@ -646,25 +646,39 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
 \subsection{Scaling Behaviour}
 
 \begin{figure}[h]
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.45\textwidth}
         \centering
         \begin{tabular}{lccc}
-            Neighborhood & Dimension & Step & Scaling\\
+            \toprule
+            Growth Type & Dim & Step & Scaling\\
             \midrule
             1D                  & $1$ & $1$ & $2n+1$\\
             2D Moore            & $2$ & $1$ & $(2n+1)^2$\\
             2D von Neumann      & $2$ & $1$ & $2n(n+1)+1$\\
             d-Dim Moore         & $d$ & $1$ & $(2n+1)^d$\\
             d-Dim von Neumann   & $d$ & $1$ & \todo{calculate it}\\
-            d-Dim Moore  & $d$ & $k$ & $(2kn+1)^d$\\
-            d-Dim von Neumann & $d$ & $k$ & \todo{calculate it}
+            d-Dim Moore         & $d$ & $k$ & $(2kn+1)^d$\\
+            d-Dim von Neumann   & $d$ & $k$ & \todo{calculate it}\\
+            \midrule
+            Exponential         &     &     & $2^n$\\
+            Logistic            &     &     & $\frac{L}{1+e^{-\alpha(n-x_0)}}$\\
+            \bottomrule
         \end{tabular}
     \end{minipage}%
     \hspace{0.05\textwidth}%
-    \begin{minipage}{0.44\textwidth}
+    \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\textwidth]{ca-rules/ca-scaling.pdf}
     \end{minipage}
-    \caption{\todo{insert new image of various scalings; caption for image}}
+    \caption{
+        Comparison of various scaling rules for different neighborhoods of \acp{ca} and other
+        growth curves.
+        The graph shows the polynomial nature of \acp{ca} scaling laws compared to the exponential
+        nature of either purely exponential or logistic growth.
+        The growth parmeter of the logistic growth curve was chosen $\alpha=\log(2)$ in order to
+        align with the exponential growth rate of $2^n$.
+        The limiting term was chosen $L=3000$ in order to produce visually comparable results and
+        $x_0=\log(L-1) / \log(2)$ was chosen such that the initial value is identical to $1$.
+    }
     \label{fig:ca-scaling}
 \end{figure}
 
