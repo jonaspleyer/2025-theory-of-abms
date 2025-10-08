@@ -120,12 +120,27 @@ pdfkeywords={},
     cell-sorting and cell-cell communication.
     Extending our theoretical work, we discuss the process of spatial and remporal coarse-graining.
 \end{abstract}
+\vfill
+
+% TABLE OF CONTENTS
+% Remove this before submission
+\pagebreak
+\tableofcontents
+\vfill
+\pagebreak
 
 % keywords can be removed
 \keywords{Individual-Based \and Cell \and Biology \and Dynamical System}
 
 %###################################################################################################
 \section{Introduction}
+
+\textbf{Properties of Multicellular Systems}
+\begin{enumerate}
+    \item Stochastic -> Irreversible
+    \item Dissipative (take up energy, non-equilibrium, decrease entropy)
+\end{enumerate}
+
 Over the course of the last decades, many \acp{cabm} have been proposed and
 implemented~\cite{Pleyer2023}.
 Their puposes range from early embryogenesis to cancer research over to wound
@@ -200,7 +215,9 @@ It is important to consider these limitations when applying this theoretical fra
 \end{table}
 
 %###################################################################################################
-\section{The Cellular Space $\mathscr{C}$}
+\section{Mathematical Foundations}
+%---------------------------------------------------------------------------------------------------
+\subsection{The Cellular Space $\mathscr{C}$}
 This section aims to construct a space in which individual cells can be represented.
 We construct these notions purely from known biological behavioural principles.
 By formulating these concepts in abstract mathematical terms, we allow ourselves to cover a wide
@@ -396,7 +413,7 @@ Once the process of dying is over, the cell is removed.
 \end{corollary}
 
 %###################################################################################################
-\section{Dynamics}
+\subsection{Dynamics}
 \label{section:dynamics}
 \begin{definition}[Dynamical System]
     A dynamical system is a tuple $(T,M,\phi)$ where $T$ is a monoid (written additively) and
@@ -432,11 +449,6 @@ of the agents with it can permanently alter its constitution.
 In this way, extracellular constituents can interact and change and even the overall morphology of
 the domain could be affected by dynamics and interactions.
 
-\begin{example}[Predator Prey]
-    \todo{Implement this}
-\end{example}
-
-
 \todo{Define our dynamical system more precisely. What does it mean to be an index?
 $\iota\in\phi_t$}
 
@@ -464,14 +476,72 @@ $\iota\in\phi_t$}
     $\gamma(h)\in T_\iota\forall h\in [0,1]$.
 \end{proof}
 
+\begin{corollary}
+    If $T=\R$
+\end{corollary}
+
 \todo{practial implementations of Index choosing}
 \begin{enumerate}
     \item Assign via voxel and counting
     \item Assign via parent
 \end{enumerate}
 
-%###################################################################################################
-\section{Comparison with \aclp{ca}}
+% ..................................................................................................
+\subsubsection{Spatial Locality}
+We assume that the physical domain $D$ can be split into smaller subdomains
+$\bigcup_{i\in I}S_i=D$ which are pairwise disjoint.
+We will later require that any dynamics can be calculated by considering cellular agents inside a
+given subdomain $S_i$ and their interactions with neighboring subdomains.
+This also applies to spatial effects such as diffusion.
+Therefore, we must first develop the notion of being a \textbf{neighbor}.
+
+\begin{definition}[Neighbor]
+    The notion of neighbor can be defined by two equivalent methods.
+    \begin{enumerate}
+        \item We call $\eta:I\rightarrow Pot(I)$ a \textbf{neighbor map} if
+        \item $i\in\eta(j) \Leftrightarrow j\in\eta(i)$ for each $i,j\in I$.
+            We call a relation $||$ on $I$ a \textbf{neighbor relation} if it is symmetric.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}[Moore Neighbors]
+    The neighborhood used in the Game of Life~\ref{example:game-of-life} is the 2-dimensional
+    special case.
+    In general, for any discrete space $\mathbb{Z}^n$, we consider the Moore neighborhood $U(x)$ for
+    any point $x\in\mathbb{Z}^n$ to be
+    \begin{equation}
+        U(x) := \{y\in\mathbb{Z}^n:\max\limits_{i\in\{1..n\}}|x_i-y_i|=1\}.
+    \end{equation}
+    This definition ensures that at least one component of the value $y$ is not identical to the
+    point in question $x$.
+    This metric is also often called uniform norm, supremum norm (in a possibly infinite-dimensional
+    case) or Chebyshev norm~\cite{Rudin1976}.
+\end{example}
+
+Note that in the numerical implementation it is often more convenient to work with the first
+definition while the second can be more useful in a theoretical context.
+
+\begin{proof}
+    $1) \Rightarrow 2)$ Let $\eta$ be a neighbor map.
+    We define a relation $||$ by $i||j \Leftrightarrow i\in\eta(j)$.
+    It is clear that $||$ is symmetric.\\
+    $2) \Rightarrow 1)$ Let $||$ be a symmetric relation on $I$.
+    We define the function $\eta:I\rightarrow Pot(I)$ via
+    $\eta(i):=\{j\in I \text{ such that } i||j\}$.
+    If $j\in\eta(i)$ then $i||j \Leftrightarrow j||i$ and thus $i\in\eta(j)$.
+\end{proof}
+
+Equipped with this notion of \textbf{neighbor}, we can now formalize the spatial splitting of our
+domain.
+
+\begin{definition}[Spatial Decomposition]
+    A Spatial Decomposition of a domain $D$ is a collection of subsets
+    $\{S_i\subset D: i\in I\}$ together with a either a neighbor map $\eta$ or neighbor relation
+    $||$ such that $D=\cup_{i\in I}$ and $S_i$ are pairwise disjoint.
+\end{definition}
+\input{cellular-aspects}
+
+\subsection{Comparison with \aclp{ca}}
 \label{section:comparison-with-ca}
 Classical \acp{ca} such as Conway's Game of Life \cite{games1970fantastic} \todo{MORE CITATIONS}
 % or the Cellular Potts Model \cite{Graner1992}
@@ -643,7 +713,7 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
     \end{itemize}
 \end{proof}
 
-\subsection{Scaling Behaviour}
+\paragraph{Scaling Behaviour}
 
 \begin{figure}[h]
     \begin{minipage}{0.45\textwidth}
@@ -692,182 +762,20 @@ We explicitly exclude other processes such as stochastic effects and spatial mov
 \begin{proof}
 \end{proof}
 
-%###################################################################################################
-\section{Spatial Locality}
-\label{section:spatial-decomposition}
-We assume that the physical domain $D$ can be split into smaller subdomains
-$\bigcup_{i\in I}S_i=D$ which are pairwise disjoint.
-We will later require that any dynamics can be calculated by considering cellular agents inside a
-given subdomain $S_i$ and their interactions with neighboring subdomains.
-This also applies to spatial effects such as diffusion.
-Therefore, we must first develop the notion of being a \textbf{neighbor}.
-
-\begin{definition}[Neighbor]
-    The notion of neighbor can be defined by two equivalent methods.
-    \begin{enumerate}
-        \item We call $\eta:I\rightarrow Pot(I)$ a \textbf{neighbor map} if
-        \item $i\in\eta(j) \Leftrightarrow j\in\eta(i)$ for each $i,j\in I$.
-            We call a relation $||$ on $I$ a \textbf{neighbor relation} if it is symmetric.
-    \end{enumerate}
-\end{definition}
-
-\begin{example}[Moore Neighbors]
-    The neighborhood used in the Game of Life~\ref{example:game-of-life} is the 2-dimensional
-    special case.
-    In general, for any discrete space $\mathbb{Z}^n$, we consider the Moore neighborhood $U(x)$ for
-    any point $x\in\mathbb{Z}^n$ to be
-    \begin{equation}
-        U(x) := \{y\in\mathbb{Z}^n:\max\limits_{i\in\{1..n\}}|x_i-y_i|=1\}.
-    \end{equation}
-    This definition ensures that at least one component of the value $y$ is not identical to the
-    point in question $x$.
-    This metric is also often called uniform norm, supremum norm (in a possibly infinite-dimensional
-    case) or Chebyshev norm~\cite{Rudin1976}.
-\end{example}
-
-Note that in the numerical implementation it is often more convenient to work with the first
-definition while the second can be more useful in a theoretical context.
-
-\begin{proof}
-    $1) \Rightarrow 2)$ Let $\eta$ be a neighbor map.
-    We define a relation $||$ by $i||j \Leftrightarrow i\in\eta(j)$.
-    It is clear that $||$ is symmetric.\\
-    $2) \Rightarrow 1)$ Let $||$ be a symmetric relation on $I$.
-    We define the function $\eta:I\rightarrow Pot(I)$ via
-    $\eta(i):=\{j\in I \text{ such that } i||j\}$.
-    If $j\in\eta(i)$ then $i||j \Leftrightarrow j||i$ and thus $i\in\eta(j)$.
-\end{proof}
-
-Equipped with this notion of \textbf{neighbor}, we can now formalize the spatial splitting of our
-domain.
-
-\begin{definition}[Spatial Decomposition]
-    A Spatial Decomposition of a domain $D$ is a collection of subsets
-    $\{S_i\subset D: i\in I\}$ together with a either a neighbor map $\eta$ or neighbor relation
-    $||$ such that $D=\cup_{i\in I}$ and $S_i$ are pairwise disjoint.
-\end{definition}
-
-%---------------------------------------------------------------------------------------------------
-\subsection{Properties of Multicellular Systems}
-\label{subsection:properties}
-
-\begin{enumerate}
-    \item Stochastic -> Irreversible
-    \item Dissipative (take up energy, non-equilibrium, decrease entropy)
-\end{enumerate}
-
-%---------------------------------------------------------------------------------------------------
-\subsection{\acl{ib} Descriptions of Cellular Agent}
-\label{subsection:individual-descriptions}
-
-\begin{table}[h]
-	\caption{Aspects of cellular systems}
-	\centering
-	\begin{tabular}{ll}
-		% \multicolumn{2}{c}{Part}                   \\
-		% \cmidrule(r){1-2}
-		\toprule
-        Aspect                  &Examples\vspace{0.5em}\\
-        \it{(C) Cellular}\\
-        \midrule
-        Spatial Representation  &elongated rods, soft spheres, vertex-like\\
-        Intracellular Forces    &hexagonal shape\\
-        Intracellular Reactions &signalling pathways,stress response\\
-        Movement                &neighbour exchange, motility, chemotaxis, directed random walk\\
-        Cycle                   &differentiation, division, (phased) death, mesenchymal-epithelial transition\vspace{0.5em}\\
-        \it{(CC) Cell-Cell Interactions}\\
-		\midrule
-        Interaction Forces      &adherent forces, friction, de-adhesion\\
-        Reactions via Contact   &communication between plant-cells via plasmodesmata, gap-junctions\\
-        Neighbour sensing       &phenomenological abstraction\\
-        Fusion                  &homotypic, heterotypic\vspace{0.5em}\\
-        \it{(DC) Domain-Cell Interactions}\\
-        \midrule
-        External Forces         &blood flow, microfluidic devices\\
-        Boundary Effects        &reflection at petri-dish surface, containment of ligands, adhesion\\
-        Extracellular Processes &diffusion of morphogens, transport of signalling molecules\vspace{0.5em}\\
-        \it{(O) Other}\\
-        \midrule
-        External Controller     &introduce drug, remove cells, refresh nutrients\\
-		\bottomrule
-	\end{tabular}
-	\label{tab:cellular-aspects}
-\end{table}
-
-%---------------------------------------------------------------------------------------------------
-\subsection{Intracellular Representations and Processes}
-\label{subsec:abstractions-cell}
-\subsubsection{Mechanics - Spatial Representation, Intracellular Forces \& Movement}
-\label{subsubsec:abstractions-cell-mechanics}
-\subsubsection{Intracellular Reactions}
-\label{subsubsec:abstractions-cell-reactions}
-\subsubsection{Cycle}
-\label{subsubsec:abstractions-cell-cycle}
-
-%---------------------------------------------------------------------------------------------------
-\subsection{Cell-Cell Interactions}
-\label{subsec:abstractions-cell-cell}
-\subsubsection{Forces}
-\label{subsec:abstractions-cell-cell-forces}
-Forces acting between cells are often described in terms of interaction potentials $V(x_i, x_j)$
-where $x_i,x_j$ are the position of two cells.
-\begin{equation}
-    F_i = \nabla_{x_i}V(x_i, x_j)
-\end{equation}
-If $V$ only depends on the difference between the two positions $x_i-x_j$, we obtain an
-antisymmetric expression in $i,j$.
-\begin{align}
-    F_i &= \nabla_{x_i}V(x_i-x_j)\\
-    &= -\nabla_{x_j}V(x_i-x_j)
-\end{align}
-However, this assumption is only valid for point-like objects without any additional structure.
-Consider the example where a cell is represented by two points $(p_1, p_2)$ which are connected with
-a spring of length $l$ and strength $D$.
-This may be a simplified model for an elongated bacteria.
-We can write down the force contribution from intracellular forces
-\begin{align}
-    F_{\text{intra},i} = \begin{bmatrix}
-        - D (|p_1-p_2|-l)\\
-        D (|p_1-p_2|-l)
-    \end{bmatrix}
-\end{align}
-We can assume that the two vertices of one cell $p_{1,i},p_{2,j}$ are interacting with both vertices
-of the other.
-This reslts in a force term of the form
-\begin{align}
-    F_{\text{extra},i} &= \begin{bmatrix}
-        F(p_{1,i}, p_{1,j}) + F(p_{1,i}, p_{2,j})\\
-        F(p_{2,i}, p_{1,j}) + F(p_{2,i}, p_{2,j})
-    \end{bmatrix}\\
-    F_{\text{extra},j} &= \begin{bmatrix}
-        F(p_{1,j}, p_{1,i}) + F(p_{1,j}, p_{2,i})\\
-        F(p_{2,j}, p_{1,i}) + F(p_{2,j}, p_{2,i})
-    \end{bmatrix}
-\end{align}
-and thus we can clearly see that $F_{\text{extra},i}\neq - F_{\text{extra},j}$ even if
-$F(a,b)=-F(b,a)$.
-This means that we have to rely on a method which calculates both the forces acting on cell $i$ and
-$j$ simultanously.
-To be able to model friction forces (although rare) we additionally take the velocity $v_i$ into
-account.
-Further, we allow additional information $\sigma_i$ to be exchanged between the cells during their
-interaction (ie. species specific).
-We take this as the basis for calculating forces between cells.
-\begin{equation}
-    (F_i, F_j) = F(x_i, x_j, v_i, v_j, \sigma_i, \sigma_j)
-\end{equation}
-
-%---------------------------------------------------------------------------------------------------
-\subsection{Domain-Cell Interactions}
-\label{subsec:abstractions-domain-cell}
-
-%###################################################################################################
-\section{Applications}
 \label{section:applications}
+
+
+%###################################################################################################
+\section{Coarse-Graining Strategies}
+
+\begin{itemize}
+    \item \cite{You2018} single-cell model of rod-shaped bacteria, corse-grained model as well
+    \item \cite{Wensink2012} \textbf{TODO look at this}
+    \item \cite{Peruani2006} \textbf{TODO look at this}
+\end{itemize}
 
 %---------------------------------------------------------------------------------------------------
 \subsection{Cell Sorting}
-\label{subsection:cell-sorting}
 
 \begin{itemize}
     \item Define ratio of spatial density of species 1 and 2 $\rho(x)$
@@ -876,22 +784,19 @@ We take this as the basis for calculating forces between cells.
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------
-\subsection{Bacterial Rods}
-\label{subsection:bacterial-rods}
+\subsection{Bacterial Pool Model with Inter-species Competition}
 
 %---------------------------------------------------------------------------------------------------
 \subsection{Branching Patterns of \textit{Bacillus Subtilis}}
-\label{subsection:branching-patterns-of-bacillus-subtilis}
 
-%---------------------------------------------------------------------------------------------------
-\subsection{Semi-Vertex Model}
-\label{subsection:semi-vertex-model}
+In our previous work~\cite{Pleyer2025}, we have shown that bacterial branching patterns can be
+described by an \ac{abm}
 
-%###################################################################################################
-\section{Coarse-Graining Strategies}
-\label{section:renormalization}
-
-\subsection{Bacterial Branching}
+\begin{itemize}
+    \item bacterial branching patterns can be modeled by \ac{abm}
+    \item list aspects: Mechanics, Interaction, Intracellular \& Extracellular Reactions, Cycle
+    \item write down equations
+\end{itemize}
 
 \begin{enumerate}
     \item Viewpoint from various scales is inherent for \acp{abm}
@@ -933,23 +838,6 @@ We take this as the basis for calculating forces between cells.
     \label{fig:fractal-dimension-voxel-size}
 \end{figure}
 
-%###################################################################################################
-\section{Ergodicity}
-\label{section:ergodicity}
-
-\todo{Think about this}
-\url{https://en.wikipedia.org/wiki/Ergodicity}
-
-let $(X, B)$ be a measurable space and for each $t\in\R$ then such a system is given by a family
-$T_t$ of measruable functions from $X$ to itself, so that for any $t,s\in\R_+$, the relation
-$T_{s+t}=T_s\circ T_t$ holds.
-If $\mu$ is a probability measure on $(X, B)$ then we say that $T_t$ is $\mu$-ergodic or $\mu$ is an
-ergodic measure for $T$ if each $T_t$ preserves $\mu$ and the following condition holds:
-
-For any $A\in B$, if for all $t\in\R_+$ we have $T_t^{-1}(A)\subset A$ then either $\mu(A)=0$ or
-$\mu(A)=1$.
-
-
 \todo{include images from fractal dimension calculation}
 \begin{itemize}
     \item Introduce variable $k$ which represents some type of "cutoff"
@@ -964,6 +852,18 @@ $\mu(A)=1$.
         This shows that coarser values of $k$ for the spatial component also allow us to consider
         coarser values for the time increment.
 \end{itemize}
+
+%###################################################################################################
+\section{Other Applications}
+
+%---------------------------------------------------------------------------------------------------
+\subsection{Mechanical Properties of Rod-shaped Bacteria}
+\label{subsection:bacterial-rods}
+
+%---------------------------------------------------------------------------------------------------
+\subsection{Trichome Turing Patterns on leaves of \textit{Arabidopsis Thaliana}}
+
+% \input{ergodicity}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
