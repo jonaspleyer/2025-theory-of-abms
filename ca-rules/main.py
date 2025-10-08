@@ -55,7 +55,7 @@ def generate_rule_name(rule):
     return "".join([str(b) for b in binary]), f"{decimal:03}"
 
 
-def compute_rule(rule, start: np.ndarray, folder: Path):
+def compute_rule(rule, start: np.ndarray):
     (n_grid_x,) = start.shape
     n_grid_y = n_grid_x
     total = np.zeros((n_grid_y, n_grid_x), dtype=int)
@@ -93,7 +93,7 @@ def plot_rules(
 ):
     imgs_rules = []
     for rule in tqdm(rules, total=n_rules):
-        img = compute_rule(rule, start, folder)
+        img = compute_rule(rule, start)
         for i, saved_rules in imgs_rules:
             if i.shape == img.shape and np.all(i == img):
                 saved_rules.append(rule)
