@@ -107,3 +107,4 @@ if __name__ == "__main__":
     ax.set_axisbelow(True)
     fig.tight_layout()
     fig.savefig("ca-rules/ca-scaling.pdf")
+    fig.savefig("ca-rules/ca-scaling.png")
