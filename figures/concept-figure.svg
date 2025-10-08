@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="100mm"
+   width="200mm"
    height="100mm"
-   viewBox="0 0 100 100"
+   viewBox="0 0 200 100"
    version="1.1"
    id="svg1"
    sodipodi:docname="concept-figure.svg"
@@ -27,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="113.66741"
-     inkscape:cy="189.68139"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="289.56023"
+     inkscape:cy="48.436814"
      inkscape:window-width="2560"
      inkscape:window-height="1396"
      inkscape:window-x="0"
@@ -56,6 +56,75 @@
   </sodipodi:namedview>
   <defs
      id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker14"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Diamond"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path14" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Diamond"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Diamond"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path13" />
+    </marker>
+    <linearGradient
+       id="linearGradient3"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#dfbd6a;stop-opacity:0.11981317;"
+         offset="0"
+         id="stop3" />
+      <stop
+         style="stop-color:#dfbd6a;stop-opacity:1;"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
     <linearGradient
        id="linearGradient10"
        inkscape:collect="always">
@@ -834,11 +903,11 @@
        inkscape:collect="always"
        xlink:href="#linearGradient2754"
        id="radialGradient2755"
-       cx="23.151042"
+       cx="23.151043"
        cy="13.901187"
-       fx="23.151042"
+       fx="23.151043"
        fy="13.901187"
-       r="16.611459"
+       r="16.61146"
        gradientTransform="matrix(1.9210532,0,0,1.0215332,-29.986896,47.903268)"
        gradientUnits="userSpaceOnUse" />
     <inkscape:path-effect
@@ -1202,11 +1271,60 @@
        x2="48.887615"
        y2="37.675415"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10"
+       id="linearGradient1"
+       gradientUnits="userSpaceOnUse"
+       x1="41.010418"
+       y1="38.364582"
+       x2="51.937702"
+       y2="38.364582" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10"
+       id="linearGradient2"
+       gradientUnits="userSpaceOnUse"
+       x1="41.010418"
+       y1="38.364582"
+       x2="51.937702"
+       y2="38.364582" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3"
+       id="linearGradient4"
+       x1="0"
+       y1="50"
+       x2="200"
+       y2="50"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <path
+       id="rect2"
+       style="display:inline;fill:url(#linearGradient4);stroke-width:0.833001;stroke-linecap:round;stroke-linejoin:round"
+       d="M 49.659547,0 200,13.229166 V 88.635413 L 49.659547,100 Z"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       id="g16">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.6;marker-end:url(#Triangle)"
+         d="m 88.635413,34.395832 14.552087,0.1"
+         id="path10"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.6;marker-end:url(#Triangle)"
+         d="m 88.635413,66.842271 14.552087,0.1"
+         id="path10-2"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
     <circle
        style="display:inline;fill:#f3c380;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
        id="path1"
@@ -1228,14 +1346,14 @@
        transform="matrix(-0.72499946,0.41087748,-0.41087748,-0.72499946,104.99384,46.904207)"
        style="fill:url(#linearGradient9)">
       <ellipse
-         style="fill:url(#linearGradient9);fill-opacity:1;stroke:#000000;stroke-width:0.0747185;stroke-linecap:round;stroke-linejoin:round"
+         style="fill:url(#linearGradient1);fill-opacity:1;stroke:#000000;stroke-width:0.0747185;stroke-linecap:round;stroke-linejoin:round"
          id="path2-3"
          cx="44.979164"
          cy="38.364582"
          rx="3.9313872"
          ry="3.9313893" />
       <path
-         style="fill:url(#linearGradient9);fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle-2)"
+         style="fill:url(#linearGradient2);fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ConcaveTriangle-2)"
          d="m 48.910551,38.364582 1.36028,0"
          id="path6-6"
          inkscape:connector-type="polyline"
@@ -1419,6 +1537,105 @@
          x="72.739746"
          y="25.581125"
          id="tspan50">Domain-Cell</tspan></text>
+    <g
+       id="g15"
+       transform="translate(2.645855)">
+      <rect
+         style="fill:#005ea4;fill-opacity:0.8;stroke-width:0.72884;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4"
+         width="89.958344"
+         height="30.427082"
+         x="104.51041"
+         y="18.520832" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.94933px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.3356"
+         x="149.45462"
+         y="36.064037"
+         id="text49-52-3"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.94933px;font-family:Calibri;-inkscape-font-specification:Calibri;stroke-width:0.3356"
+           x="149.45462"
+           y="36.064037"
+           id="tspan8">Mathematical Model</tspan></text>
+      <rect
+         style="fill:#008db5;fill-opacity:0.8;stroke-width:0.798986;stroke-linecap:round;stroke-linejoin:round"
+         id="rect9"
+         width="89.958321"
+         height="30.427086"
+         x="104.51041"
+         y="51.593746" />
+      <text
+         xml:space="preserve"
+         style="font-size:8.82184px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.330819"
+         x="149.58864"
+         y="69.684975"
+         id="text49-52-3-2"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.82184px;font-family:Calibri;-inkscape-font-specification:Calibri;stroke-width:0.330819"
+           x="149.58864"
+           y="69.684975"
+           id="tspan8-7">Computational Model</tspan></text>
+      <g
+         id="g14">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 186.53124,47.624999 v 5.291666"
+           id="path11-9-5-7"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 175.94791,47.624999 v 5.291666"
+           id="path12-2-9-3"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 123.03124,47.624998 v 5.291666"
+           id="path11"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 112.44791,47.624998 v 5.291666"
+           id="path12"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 144.1979,47.624998 v 5.291666"
+           id="path11-9"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 133.61457,47.624998 v 5.291666"
+           id="path12-2"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 165.36457,47.624999 v 5.291666"
+           id="path11-9-5"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Diamond);marker-end:url(#marker14)"
+           d="m 154.78124,47.624999 v 5.291666"
+           id="path12-2-9"
+           inkscape:connector-type="polyline"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+    </g>
   </g>
   <g
      id="g6"
