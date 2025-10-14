@@ -245,3 +245,5 @@ if __name__ == "__main__":
     ax.plot(x_values[-4:], densities[-4:], color="black", linestyle="--")
 
     fig.savefig("figures/circle-packing.svg")
+    fig.savefig("figures/circle-packing.png")
+    fig.savefig("figures/circle-packing.pdf")
