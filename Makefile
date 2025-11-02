@@ -1,5 +1,5 @@
 CC:=latexmk
-OPTIONS:=-pdf
+OPTIONS:=-pdf --shell-escape
 TARGET:=main
 
 all:
