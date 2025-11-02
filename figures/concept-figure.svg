@@ -28,10 +28,10 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      inkscape:zoom="1.4142136"
-     inkscape:cx="505.9349"
-     inkscape:cy="72.478445"
+     inkscape:cx="479.41838"
+     inkscape:cy="221.67797"
      inkscape:window-width="2560"
-     inkscape:window-height="1396"
+     inkscape:window-height="1400"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -1405,7 +1405,7 @@
          inkscape:connector-type="polyline"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" /><rect
-         style="fill:#463eba;fill-opacity:0.8;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#fefee3;fill-opacity:0.80000001;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
          id="rect1-3"
          width="71.4375"
          height="26.45833"
@@ -1414,7 +1414,7 @@
          transform="translate(0,-0.00624657)"
          rx="3"
          ry="3" /><rect
-         style="fill:#00ad2d;fill-opacity:0.8;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#ffc9b9;fill-opacity:0.80000001;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
          id="rect1"
          width="71.4375"
          height="26.45833"
@@ -1598,7 +1598,7 @@
          inkscape:connector-type="polyline"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" /></g><circle
-       style="display:inline;fill:#f3c380;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       style="display:inline;fill:#edcbab;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
        id="path1"
        cx="50"
        cy="50"
@@ -1606,7 +1606,7 @@
        inkscape:export-filename="path1.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" /><circle
-       style="display:inline;fill:#dfbd6a;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       style="display:inline;fill:#d68c45;fill-opacity:0.89999998;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
        id="path3"
        cx="39.891548"
        cy="59.60714"
@@ -1628,7 +1628,7 @@
          inkscape:connector-curvature="0"
          inkscape:connection-start="#path2-3"
          sodipodi:nodetypes="cc" /></g><circle
-       style="display:inline;fill:#f3ec80;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       style="display:inline;fill:#ffc9b9;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;fill-opacity:0.50196081"
        id="path3-3"
        cx="50"
        cy="69.583298"
@@ -1767,14 +1767,14 @@
          y="80.061264">Cellular</tspan></text><text
        xml:space="preserve"
        style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
-       x="72.739746"
-       y="25.581125"
+       x="63.347034"
+       y="22.538416"
        id="text49-52"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.29167px;font-family:Calibri;-inkscape-font-specification:Calibri;stroke-width:0.264583"
-         x="72.739746"
-         y="25.581125"
-         id="tspan50">Domain-Cell</tspan></text><g
+         x="63.347034"
+         y="22.538416"
+         id="tspan1">Environment-Cell</tspan></text><g
        id="g15"
        transform="translate(2.645855,-0.27083206)"
        style="stroke-width:0.2;stroke-dasharray:none"><g
@@ -1799,7 +1799,7 @@
            inkscape:connector-type="polyline"
            inkscape:connector-curvature="0"
            sodipodi:nodetypes="cc" /></g><rect
-         style="fill:#005ea4;fill-opacity:0.8;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#4c956c;fill-opacity:0.80000001;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;stroke-dasharray:none"
          id="rect4"
          width="79.375"
          height="30.427082"
@@ -1817,7 +1817,7 @@
            x="144.17035"
            y="27.55599"
            id="tspan8">Mathematical Model</tspan></text><rect
-         style="fill:#008db5;fill-opacity:0.8;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke:#000000;stroke-opacity:1"
+         style="fill:#2c6e49;fill-opacity:0.80000001;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke:#000000;stroke-opacity:1"
          id="rect9"
          width="79.374985"
          height="30.427086"
@@ -2176,7 +2176,7 @@
      id="layer4"
      inkscape:label="Layer 4" /><g
      id="g2849"
-     transform="matrix(0.95756818,0,0,0.95756818,-23.813858,-44.647332)"><g
+     transform="matrix(0.95756818,0,0,0.95756818,-20.374275,-48.153061)"><g
        inkscape:label="GridCartesian:X10:Y10"
        transform="matrix(0.48887905,0,0,0.37612376,43.508116,30.351224)"
        id="g2693"
