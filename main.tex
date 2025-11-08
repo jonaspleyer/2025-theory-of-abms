@@ -637,54 +637,45 @@ Combine multiple cells into one circle \cite{Graham1998}
     \centering
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000666.png}
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{A}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{A}};
     \end{tikzonimage}%
     \hspace{0.01\textwidth}%
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000080.png}
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{B}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{B}};
     \end{tikzonimage}%
     \hspace{0.01\textwidth}%
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000042.png}%
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{C}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{C}};
     \end{tikzonimage}%
     \hspace{0.01\textwidth}%
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000029.png}%
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{D}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{D}};
     \end{tikzonimage}%
     \hspace{0.01\textwidth}%
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000022.png}%
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{E}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{E}};
     \end{tikzonimage}%
     \hspace{0.01\textwidth}%
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000017.png}
-        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=10pt, minimum height=10pt]{\textbf{F}};
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, white, minimum width=14pt, minimum height=14pt]{\textbf{F}};
     \end{tikzonimage}\\
-    \includegraphics[width=\textwidth]{figures/fractal-combined-plot}
-    % \begin{minipage}{0.5\textwidth}
-    % \begin{tikzonimage}[width=1.0\textwidth]
-    %     {figures/fractal-dim-box-size-scaling.pdf}
-    %     \node at (0, 0.98)[anchor=north west, rectangle, draw, minimum width=10pt, minimum height=10pt]{\textbf{G}};
-    % \end{tikzonimage}%
-    % \end{minipage}%
-    % \begin{minipage}{0.5\textwidth}
-    %     \begin{tikzonimage}[width=0.5\textwidth]
-    %         {figures/fractal-dim-vs-diffusion-constant.pdf}
-    %         \node at (0, 0.98)[anchor=north west, rectangle, draw, minimum width=10pt, minimum height=10pt]{\textbf{H}};
-    %     \end{tikzonimage}%
-    %     \begin{tikzonimage}[width=0.5\textwidth]
-    %         {figures/fractal-dim-over-time.pdf}
-    %         \node at (0, 0.98)[anchor=north west, rectangle, draw, minimum width=10pt, minimum height=10pt]{\textbf{I}};
-    %     \end{tikzonimage}\\
-    %     \begin{tikzonimage}[width=1.0\textwidth]
-    %         {figures/circle-packing}
-    %         \node at (0, 0.98)[anchor=north west, rectangle, draw, minimum width=10pt, minimum height=10pt]{\textbf{J}};
-    %     \end{tikzonimage}
-    % \end{minipage}
+    \begin{tikzonimage}[width=0.33\textwidth]
+        {figures/fractal-dim-box-size-scaling.pdf}
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, minimum width=14pt, minimum height=14pt]{\textbf{G}};
+    \end{tikzonimage}%
+    \begin{tikzonimage}[width=0.33\textwidth]
+        {figures/fractal-dim-vs-diffusion-constant.pdf}
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, minimum width=14pt, minimum height=14pt]{\textbf{H}};
+    \end{tikzonimage}%
+    \begin{tikzonimage}[width=0.33\textwidth]
+        {figures/fractal-dim-over-time.pdf}
+        \node at (0.025, 0.975)[anchor=north west, rectangle, draw, minimum width=14pt, minimum height=14pt]{\textbf{I}};
+    \end{tikzonimage}
     \caption{
         (A-F) Calculation steps for determining the fractal dimension for varying number of voxels
         $N_v\in\{666,80,42,29,22,17\}$ for $D=80\SI{80}{\second^2\per\micro\metre^2}$.
@@ -692,9 +683,6 @@ Combine multiple cells into one circle \cite{Graham1998}
         The linear slope determines the fractal dimension of the structure.
         (H) Fractal dimension as a function of the diffusion constant of the nutrients.
         (I) Temporal evolution of fractal dimension.
-        (J) Coarse-graining approach of combining multiple cells into one larger one.
-        It was shown that these packings are optimal by maximizing the density.
-        The last three configurations have only been conjectured so far.
     }
 \end{figure}
 
@@ -711,6 +699,23 @@ Combine multiple cells into one circle \cite{Graham1998}
     \item show that we again obtain a branching simulation
     \item some parameters are scaled with $k$ determine their functional dependence
 \end{itemize}
+
+\begin{figure}
+    \centering
+    \begin{tikzonimage}[width=0.33\textwidth]
+        {figures/morse-potential.pdf}
+        \node at (0, 1)[anchor=north west, rectangle, draw, minimum width=14pt, minimum height=14pt]{\textbf{A}};
+    \end{tikzonimage}%
+    \begin{tikzonimage}[width=0.66\textwidth]
+        {figures/circle-packing.pdf}
+        \node at (0, 1)[anchor=north west, rectangle, draw, minimum width=14pt, minimum height=14pt]{\textbf{B}};
+    \end{tikzonimage}
+    \caption{
+        (B) Coarse-graining approach of combining multiple cells into one larger one.
+        It was shown that these packings are optimal by maximizing the density.
+        The last three configurations have only been conjectured so far.
+    }
+\end{figure}
 
 \paragraph{Research Steps}
 \begin{enumerate}
