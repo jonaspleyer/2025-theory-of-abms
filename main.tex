@@ -503,7 +503,98 @@ $\iota\in\phi_t$}
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------
-\subsection{Trivial Reduction of a Bacterial Pool Model with Inter-species Competition}
+\newpage
+\subsection{Coarse-graining of a Bacterial Pool Model}
+This section formulates a generalized model for cellular dynamics, covering growth, division,
+intracellular \& extracellular reactions and mechanical properties.
+We assume that each cell is represented by a position $\textbf{x}_c\in\R^d$ and interacts in a
+point-wise manner with the external environment.
+This apparoach is general enough to cover a wide range of cellular systems while also providing the
+necessary assumptions to derive meaningful results.
+We model the system over the course of a time interval $I\subset\R$.
+Within the model every alive cell $c\in\CS$ is described by an individual set of equations for volume $V_c$, intracellular reactions $\textbf{v}_c$ and mechanics $\textbf{x}_c$.
+These equations can be subject to heterogeneity and are thus not assumed to be identical in their
+most generalized version.
+Quantities which are specific to a particular cell $c\in\CS$ are indexed with said cell accordingly.
+We will assume that all functions are sufficiently differentiable and that a solution to the differential equations exists on $I$.
+The system of equations is given by
+\begin{alignat}{5}
+    \partial_t{V_c} &= &&&&h_g(\textbf{v}_c, V_c)
+    \label{eq:volumetric-growth}\\
+    \partial_t{\textbf{v}_c} &=  &-& \textbf{T}_i\textbf{h}_x(\textbf{v}_c,\textbf{w}|_{\textbf{x}_c}) &+& \textbf{h}_{i,c}(\textbf{v}_c, V_c)
+    \label{eq:intracellular-reactions}\\
+    \partial_t{\textbf{w}} &= &\sum\limits_c \frac{V_c}{V_\mathscr{D}} &\textbf{T}_e\textbf{h}_x(\textbf{v}_c,\textbf{w})\delta(\textbf{x}-\textbf{x}_c) &+& \textbf{h}_e(\textbf{w}) &+& \textbf{S}(\textbf{w})
+    \label{eq:extracellular-reactions}\\
+    \partial^2_t\textbf{x}_c &= &\sum\limits_{s\neq c}& \textbf{F}(\textbf{x}_c, \textbf{x}_s) - \lambda \partial_t\textbf{x}_c
+    \label{eq:equations-of-motion}.
+\end{alignat}
+Equation~\eqref{eq:volumetric-growth} defines the term $h_g(\textbf{v}_c, V_c)$ which describes the rate of change of the volume of a single cell.
+This growth term is coupled to the presence of intracellular concentrations $\textbf{v}:I\rightarrow\R^n$.
+Intracellular processes are expressed in equation~\eqref{eq:intracellular-reactions} via $\textbf{h}_i(\textbf{v}_c, V_c)$ which also encompasses any growth-related changes.
+We also model the dynamics of extracellular concentrations (equation~\eqref{eq:extracellular-reactions}) $\textbf{w}:I\times\mathcal{D}\rightarrow\R^m$ which are distributed over the domain $\mathcal{D}\subset\R^d$.
+The integers $n,m$ refer to the number of intracellular/extracellular components respectively while $d$ is the dimension of the physical environment (usually $d=2,3$).
+The extracellular concentrations are coupled to the individual agents via an exchange term $\textbf{h}_x(\textbf{v}_c,\textbf{w})$.
+We have introduced two auxiliary diagonal matrices $T_i\in\R^{n\times l}$ and $T_e\in\R^{m\times l}$ which enables us to utilize the same notion $\textbf{h}_x(\textbf{v}_c,\textbf{w})$ for the intracellular $\textbf{v}_c$ and extracellular $\textbf{w}$ derivative.
+This choice ensures that extracellular and intracellular concentrations remain comparable and tractable.
+Since we have chosen to model concentrations, the exchange term $\textbf{h}_x(\textbf{v}_c, \textbf{w})$ needs to be scaled with the ratio of cellular volume $V_c$ to domain volume $V_\mathscr{D}$ to correctly describe the total amount of exchanged resources.
+The term $\textbf{S}(\textbf{w})$ is supposed to model transport of the extracellular compounds and
+does not alter the total amount, i.e. $\int\textbf{S}(\textbf{w})\text{dV}=0$.
+Table~\ref{table:overview-model-aspects} shows a summary of the model aspects that are treated with
+this framework.
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lclll}
+        \toprule
+        Model Aspect & Equation & Input && Output\\
+        \midrule
+        Growth Model            & $h_g(\textbf{v}_c,V_c)$                   & $\R^n\times\R$    & $\rightarrow$ & $\R$\\
+        Intracellular Reactions & $\textbf{h}_i(\textbf{v}_c,V_c)$          & $\R^n\times\R$    & $\rightarrow$ & $\R^n$\\
+        Exchange                & $\textbf{h}_x(\textbf{v}_c, \textbf{w})$  & $\R^n\times\R^m$  & $\rightarrow$ & $\R^l$\\
+        Extracellular Reactions & $\textbf{h}_e(\textbf{w})$                & $\R^m$            & $\rightarrow$ & $\R^m$\\
+        Fluid Motion            & $\textbf{S}(\textbf{w})$                  & $\R^m$            & $\rightarrow$ & $\R^m$\\
+        Mechanics               & $\partial_t^2\textbf{x}_c$                & $\R$              & $\rightarrow$ & $\R^d$\\
+        Division                & $\gamma(c)$                               & $\CS$             & $\rightarrow$ & $\CS\times\CS$\\
+        \bottomrule
+    \end{tabular}
+    \caption{Overview of terms contributing to the dynamics of the system.}
+    \label{table:overview-model-aspects}
+\end{table}
+
+\paragraph{Case1: Full Reduction}
+We consider the case with no cellular growth $h_g=0$, and aim to exclude any spatial dependence by integrating over the domain $\mathscr{D}$.
+Furthermore, we assume that the dimensionality of intra- and extracellular reactions is identical $n=m$ and that the exchange term is given by a fast linear term $\textbf{h}_x~(\textbf{v}_c - \textbf{w}$.
+These choices reduce the auxiliary matrices to $\textbf{T}_i=\textbf{T}_e=\mathbb{1}$.
+Under the assumption that the exchange is fast compared the remaining processes, we can assume that $\textbf{v}_c=\textbf{w}|_{\textbf{x}_c}$.
+This considerably simplifies our system of equations leaving us with
+\begin{equation}
+    \partial_t\textbf{w} = \sum\limits_c h_{i,c}(\textbf{w}|_{\textbf{x}_c})\frac{V_c}{V_\mathscr{D}}\delta(\textbf{x}-\textbf{x}_c) + \textbf{h}_e(\textbf{w}) + \textbf{S}(\textbf{w}).
+\end{equation}
+We integrate over the domain $\mathscr{D}$ and obtain use the total amount of extracellular compounds $\bar{\textbf{w}}$ instead of the previously used concentrations $\textbf{w}$ to reformulate the resulting equation.
+Carrying out these steps leads to
+\begin{alignat}{7}
+    \partial_t\bar{\textbf{w}} &=
+    &\int\limits_\mathscr{D}\sum\limits_c&
+    \textbf{h}_{i,c}(\textbf{w})\frac{V_c}{V_\mathscr{D}}\delta(\textbf{x} - \textbf{x}_c)\text{dV}
+    &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    &+& \int\limits_\mathscr{D}\textbf{S}(\textbf{w})\text{dV}\\
+    &= &\sum\limits_c& V_c\textbf{h}_{i,c}(\bar{\textbf{w}}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})\\
+    &= &\sum\limits_c& \frac{V_c}{V_\mathscr{D}}\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    \label{eq:pool-model-case1-coarse-grained-result}
+\end{alignat}
+which is the direct combination of intra- and extracellular reactions.
+Note that the final integral vanishes due to our assumptions that $\textbf{S}(\textbf{w})$ only describes transport terms, leaving the total amount invariant.
+The first term can be understood as an expectation value of a product of two distributions over living cells $c\in\CS$.
+Assuming that the distribution of volumes $V_c$ and intracellular reactions is stochastically
+independent, we can rewrite equation~\eqref{eq:pool-model-case1-coarse-grained-result}
+\begin{equation}
+    \partial_t\bar{\textbf{w}} =
+    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\textbf{h}_{i,c}{\bar{\textbf{w}}})
+    + \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    = \bar{\textbf{h}}(\bar{\textbf{w}}).
+\end{equation}
+where we have used the expectation value $\text{E}(\dots)$ to factorize the first term.
+In the final step, we used a very concise notation, showcasing that our equations reduce to an \ac{ode}.
 
 %---------------------------------------------------------------------------------------------------
 \newpage
