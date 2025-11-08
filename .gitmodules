@@ -1,0 +1,3 @@
+[submodule "cr_bayesian_optim"]
+	path = cr_bayesian_optim
+	url = git@github.com:jonaspleyer/cr_bayesian_optim
