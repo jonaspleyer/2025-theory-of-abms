@@ -193,7 +193,7 @@ pdfkeywords={},
 \end{table}
 
 %---------------------------------------------------------------------------------------------------
-\subsection{The Cellular Space  $\CS$}
+\subsection{The Cellular Space $\CS$}
 This section aims to construct a space in which individual cells can be represented.
 We construct these notions purely from known biological behavioural principles.
 By formulating these concepts in abstract mathematical terms, we allow ourselves to cover a wide
@@ -564,14 +564,14 @@ this framework.
 
 \paragraph{Case1: Full Reduction}
 We consider the case with no cellular growth $h_g=0$, and aim to exclude any spatial dependence by integrating over the domain $\mathscr{D}$.
-Furthermore, we assume that the dimensionality of intra- and extracellular reactions is identical $n=m$ and that the exchange term is given by a fast linear term $\textbf{h}_x~(\textbf{v}_c - \textbf{w}$.
+Furthermore, we assume that the dimensionality of intra- and extracellular reactions is identical $n=m$ and that the exchange term is given by a fast linear term $\textbf{h}_x~(\textbf{v}_c - \textbf{w})$.
 These choices reduce the auxiliary matrices to $\textbf{T}_i=\textbf{T}_e=\mathbb{1}$.
 Under the assumption that the exchange is fast compared the remaining processes, we can assume that $\textbf{v}_c=\textbf{w}|_{\textbf{x}_c}$.
 This considerably simplifies our system of equations leaving us with
 \begin{equation}
     \partial_t\textbf{w} = \sum\limits_c h_{i,c}(\textbf{w}|_{\textbf{x}_c})\frac{V_c}{V_\mathscr{D}}\delta(\textbf{x}-\textbf{x}_c) + \textbf{h}_e(\textbf{w}) + \textbf{S}(\textbf{w}).
 \end{equation}
-We integrate over the domain $\mathscr{D}$ and obtain use the total amount of extracellular compounds $\bar{\textbf{w}}$ instead of the previously used concentrations $\textbf{w}$ to reformulate the resulting equation.
+We integrate over the domain $\mathscr{D}$ and obtain use the total amount of extracellular compounds $\bar{\textbf{w}}:I\rightarrow\R^n$ instead of the previously used concentrations $\textbf{w}$ to reformulate the resulting equation.
 Carrying out these steps leads to
 \begin{alignat}{7}
     \partial_t\bar{\textbf{w}} &=
@@ -585,17 +585,54 @@ Carrying out these steps leads to
 \end{alignat}
 which is the direct combination of intra- and extracellular reactions.
 Note that the final integral vanishes due to our assumptions that $\textbf{S}(\textbf{w})$ only describes transport terms, leaving the total amount invariant.
-The first term can be understood as an expectation value of a product of two distributions over living cells $c\in\CS$.
-Assuming that the distribution of volumes $V_c$ and intracellular reactions is stochastically
-independent, we can rewrite equation~\eqref{eq:pool-model-case1-coarse-grained-result}
+The first term can be understood as an expectation value of a product of two distributions over living cells $c\in\CS$ which we will use to rewrite equation~\eqref{eq:pool-model-case1-coarse-grained-result}.
+In the general case where the distributions $V_c/V_\mathscr{D}$ and $\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}})$ are not independent, we obtain
 \begin{equation}
     \partial_t\bar{\textbf{w}} =
-    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\textbf{h}_{i,c}{\bar{\textbf{w}}})
+    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
+    + \text{Cov}\left(\frac{V_c}{V_\mathscr{D}},\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}})\right)
     + \bar{\textbf{h}}_e(\bar{\textbf{w}})
-    = \bar{\textbf{h}}(\bar{\textbf{w}}).
 \end{equation}
-where we have used the expectation value $\text{E}(\dots)$ to factorize the first term.
+which can be further reduced, assuming that the distribution of volumes $V_c$ and intracellular reactions is stochastically independent:
+\begin{equation}
+    \partial_t\bar{\textbf{w}} =
+    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
+    + \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    = \bar{\textbf{h}}(\bar{\textbf{w}})
+\end{equation}
+We have used the expectation value $\text{E}(X_c)=\sum_c X_c$ to factorize the first term.
 In the final step, we used a very concise notation, showcasing that our equations reduce to an \ac{ode}.
+
+\paragraph{Case 2: With Exchange}
+We follow all steps identically to the previous case, but do not assume that the exchange between intra- and extracellular compounds is fast resulting in
+\begin{alignat}{3}
+    \partial_t\bar{\textbf{v}}_c &= &- &\textbf{A}\left(\bar{\textbf{v}}_c - \frac{V_c}{V_\mathscr{D}}\bar{\textbf{w}}\right) + \bar{\textbf{h}}_{i,c}(\bar{\textbf{v}}_c)\\
+    \partial_t\bar{\textbf{w}} &= &\sum\limits_c&\textbf{A}\left(\bar{\textbf{v}}_c - \frac{V_c}{V_\mathscr{D}}\bar{\textbf{w}}\right) + \bar{\textbf{h}}_e(\bar{\textbf{w}}).
+\end{alignat}
+Again utilizing the expectation value $\text{E}$, we can reformulate the equations and obtain
+\begin{alignat}{5}
+    \partial_t\text{E}(\bar{\textbf{v}}_c) &=
+        &-& \textbf{A}\left(\text{E}(\bar{\textbf{v}}_c) - \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\bar{\textbf{w}}\right)
+        &+& \text{E}\left(\bar{\textbf{h}}_{i,c}(\bar{\textbf{v}}_c)\right)\\
+    \partial_t\bar{\textbf{w}} &=
+        &&\textbf{A}\left(\text{E}(\bar{\textbf{v}}_c) - \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\bar{\textbf{w}}\right)
+        &+& \bar{\textbf{h}}_e(\bar{\textbf{w}}).
+\end{alignat}
+With the transformations
+\begin{align}
+    \textbf{u}_0 &= \text{E}(\bar{\textbf{v}}_c) - q\bar{\textbf{w}}\\
+    \textbf{u}_1 &= \text{E}(\bar{\textbf{v}}_c) + \bar{\textbf{w}}\\
+    \textbf{z}_i &= \text{E}(\bar{\textbf{h}}_e(\bar{\textbf{w}}))\\
+    \textbf{z}_e &= \bar{\textbf{h}}_e(\bar{\textbf{w}})
+\end{align}
+where $q=\text{E}(V_c/V_\mathscr{D})$, we are left with the system
+\begin{alignat}{3}
+    \partial_t\textbf{u}_0 &= \textbf{z}_i &-q& \textbf{z}_e -(1+q)\textbf{A}\textbf{u}_0 \\
+    \partial_t\textbf{u}_1 &= \textbf{z}_i &+& \textbf{z}_e
+\end{alignat}
+where the two equations are only decoupled if $\textbf{z}_{i/e}$ does not depend on $\textbf{u}_{0/1}$.
+
+\paragraph{Case 3: With Growth}
 
 %---------------------------------------------------------------------------------------------------
 \newpage
@@ -735,6 +772,7 @@ Combine multiple cells into one circle \cite{Graham1998}
 \end{enumerate}
 
 %---------------------------------------------------------------------------------------------------
+\newpage
 \subsection{Cell Sorting}
 
 \begin{itemize}
