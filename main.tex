@@ -318,7 +318,7 @@ daughter cells.
 \end{definition}
 
 \begin{definition}[Cell Division]
-    \label{definition:cell-division}
+    \label{definition:cell-division-function}
     A division function $\gamma$ is the concatenation of single division functions
     $\{\gamma_i,i\in I\}$.
     We require that the overall effect is independent of the order of their individual applications,
@@ -334,6 +334,17 @@ essential in upkeeping a valid cellular state.
 From an application standpoint, it is desirable to only specify the division map $\gamma$ and have
 $\Upsilon$ be defined by the underlying modeling framework.
 
+Any single-cell division function is only executed once the division process is completed and the
+two new daughter cells can be identified.
+To indicate the end of the division process a division criterion is used.
+
+\begin{definition}[Cell Division Criterion]
+    \label{definition:cell-division-criterion}
+    A division criterion is a map $\bar{\gamma}:\mathscr{C} \rightarrow \{0,1\}$ which determines if the
+    single division function~\ref{definition:cell-division-single} for the particular cell $c$ is
+    realized.
+\end{definition}
+
 Another important process is that of cell death which is similarly as cell-division not instantanous
 but occurs over a period of time.
 Death schemes are categoritzed into programmed cell-death, also known as apoptosis~\cite{Kerr1965}
@@ -344,7 +355,7 @@ Such transitions can be described by \todo{fill this} and will be discussed in
 chapter~\ref{section:dynamics}.
 Once the process of dying is over, the cell is removed.
 
-\begin{definition}[Cell Death]
+\begin{definition}[Cell Removal]
     \label{definition:cell-death}
     % We call a map $\zeta:I_p\rightarrow \text{Pot}(I_p)$ a death-function
     Any cell-death removes a particular index $\iota\in I_p$.
@@ -373,7 +384,7 @@ Once the process of dying is over, the cell is removed.
     and produces new cells $\{c_{\iota_1},\dots,c_{\iota_n}\}$.
     We thus insert the new cells as additional vertices with the edges
     $\{c_{\iota_0},c_{\iota_1}\},\dots,\{c_{\iota_0},c_{\iota_n}\}$.
-    From the Uniqueness property of the cell-division definition~\ref{definition:cell-division},
+    From the Uniqueness property of the cell-division definition~\ref{definition:cell-division-function},
     we know that the index of the removed cell $c_{\iota_0}$ will not occur for any further
     application of the division operator which means that the vertex of cell $c_{\iota_0}$ has $n$
     children.
@@ -455,7 +466,7 @@ $\iota\in\phi_t$}
     Let $t<s\in T_\iota$ arbitrary.
     We pick a path $\gamma:[0,1]\rightarrow T$ from $t$ to $s$.
     Since $T$ is ordered, we can pick a path which satisfies $t\leq\gamma(h)\leq s$.
-    By Definition~\ref{definition:cell-division}, properties 1 and 4, we see that every state
+    By Definition~\ref{definition:cell-division-function}, properties 1 and 4, we see that every state
     between the points of insertion and removal are part of $T_\iota$ and thus
     $\gamma(h)\in T_\iota\forall h\in [0,1]$.
 \end{proof}
