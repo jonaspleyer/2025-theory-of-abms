@@ -516,12 +516,12 @@ $\iota\in\phi_t$}
 
 %---------------------------------------------------------------------------------------------------
 \newpage
-\subsection{Coarse-graining of a Bacterial Pool Model}
+\subsection{Coarse-graining of an off-lattice center-based model}
 This section formulates a generalized model for cellular dynamics, covering growth, division,
 intracellular \& extracellular reactions and mechanical properties.
-We assume that each cell is represented by a position $\textbf{x}_c\in\R^d$ and interacts in a
+We assume that each cell is represented by a center-based, off-lattice point $\textbf{x}_c\in\R^d$ and interacts in a
 point-wise manner with the external environment.
-This apparoach is general enough to cover a wide range of cellular systems while also providing the
+This approach is general enough to cover a wide range of cellular systems while also providing the
 necessary assumptions to derive meaningful results.
 We model the system over the course of a time interval $I\subset\R$.
 Within the model every alive cell $c\in\CS$ is described by an individual set of equations for volume $V_c$, intracellular reactions $\textbf{v}_c$ and mechanics $\textbf{x}_c$.
@@ -537,9 +537,14 @@ The system of equations is given by
     \label{eq:intracellular-reactions}\\
     \partial_t{\textbf{w}} &= &\sum\limits_c \frac{V_c}{V_\mathscr{D}} &\textbf{T}_e\textbf{h}_x(\textbf{v}_c,\textbf{w})\delta(\textbf{x}-\textbf{x}_c) &+& \textbf{h}_e(\textbf{w}) &+& \textbf{S}(\textbf{w})
     \label{eq:extracellular-reactions}\\
-    \partial^2_t\textbf{x}_c &= &\sum\limits_{s\neq c}& \textbf{F}(\textbf{x}_c, \textbf{x}_s) - \lambda \partial_t\textbf{x}_c
-    \label{eq:equations-of-motion}.
+    % \partial_t \textbf{x}_c &= &\sum\limits_{s\neq c}&\textbf{G}(c,s) + \textbf{G}_\mathscr{D}(c)
+    % \label{eq:equations-of-motion-1}\\
+    \partial^2_t\textbf{x}_c &= &\sum\limits_{s\neq c}& \textbf{F}_\CS(c,s) + \textbf{F}_\mathscr{D}(c)
+    \label{eq:equations-of-motion-2}\\
+    \gamma&:&\CS&\rightarrow\CS\times\CS\\
+    \bar{\gamma}&:&\CS&\rightarrow\{0,1\}.
 \end{alignat}
+\todo{Explain division functions}
 Equation~\eqref{eq:volumetric-growth} defines the term $h_g(\textbf{v}_c, V_c)$ which describes the rate of change of the volume of a single cell.
 This growth term is coupled to the presence of intracellular concentrations $\textbf{v}:I\rightarrow\R^n$.
 Intracellular processes are expressed in equation~\eqref{eq:intracellular-reactions} via $\textbf{h}_i(\textbf{v}_c, V_c)$ which also encompasses any growth-related changes.
@@ -566,7 +571,7 @@ this framework.
         Extracellular Reactions & $\textbf{h}_e(\textbf{w})$                & $\R^m$            & $\rightarrow$ & $\R^m$\\
         Fluid Motion            & $\textbf{S}(\textbf{w})$                  & $\R^m$            & $\rightarrow$ & $\R^m$\\
         Mechanics               & $\partial_t^2\textbf{x}_c$                & $\R$              & $\rightarrow$ & $\R^d$\\
-        Division                & $\gamma(c)$                               & $\CS$             & $\rightarrow$ & $\CS\times\CS$\\
+        Division                & $\bar{\gamma},\gamma(c)$                  & $\CS$             & $\rightarrow$ & $\CS\times\CS$\\
         \bottomrule
     \end{tabular}
     \caption{Overview of terms contributing to the dynamics of the system.}
