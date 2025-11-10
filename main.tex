@@ -610,14 +610,15 @@ In the general case where the distributions $V_c/V_\mathscr{D}$ and $\bar{\textb
     + \bar{\textbf{h}}_e(\bar{\textbf{w}})
 \end{equation}
 which can be further reduced, assuming that the distribution of volumes $V_c$ and intracellular reactions is stochastically independent:
-\begin{equation}
-    \partial_t\bar{\textbf{w}} =
-    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
-    + \bar{\textbf{h}}_e(\bar{\textbf{w}})
-    = \bar{\textbf{h}}(\bar{\textbf{w}})
-\end{equation}
-We have used the expectation value $\text{E}(X_c)=\sum_c X_c$ to factorize the first term.
-In the final step, we used a very concise notation, showcasing that our equations reduce to an \ac{ode}.
+\begin{alignat}{5}
+    \partial_t\bar{\textbf{w}} &=
+    &\text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)&\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
+    &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})\\
+    &= &q& \bar{\textbf{h}}_i(\textbf{w}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
+\end{alignat}
+We have used the expectation value $\text{E}(X_c)=\sum_c X_c$ to factorize the first term and $q=\text{E}(V_c/V_\mathscr{D})$ with $\bar{\textbf{h}}_i=\text{E}(\bar{\textbf{h}}_{i,c})$ to simplify notation.
+Using this concise notation, the final step shows that our equations reduce to an \ac{ode}.
+The value $q$ is the fraction of total bacterial volume compared to the volume of the domain $V_\mathscr{D}$.
 
 \paragraph{Case 2: With Exchange}
 We follow all steps identically to the previous case, but do not assume that the exchange between intra- and extracellular compounds is fast resulting in
@@ -625,6 +626,7 @@ We follow all steps identically to the previous case, but do not assume that the
     \partial_t\bar{\textbf{v}}_c &= &- &\textbf{A}\left(\bar{\textbf{v}}_c - \frac{V_c}{V_\mathscr{D}}\bar{\textbf{w}}\right) + \bar{\textbf{h}}_{i,c}(\bar{\textbf{v}}_c)\\
     \partial_t\bar{\textbf{w}} &= &\sum\limits_c&\textbf{A}\left(\bar{\textbf{v}}_c - \frac{V_c}{V_\mathscr{D}}\bar{\textbf{w}}\right) + \bar{\textbf{h}}_e(\bar{\textbf{w}}).
 \end{alignat}
+We can see that in the case where nothing is exchanged $A=0$, the equations decouple.
 Again utilizing the expectation value $\text{E}$, we can reformulate the equations and obtain
 \begin{alignat}{5}
     \partial_t\text{E}(\bar{\textbf{v}}_c) &=
@@ -636,17 +638,15 @@ Again utilizing the expectation value $\text{E}$, we can reformulate the equatio
 \end{alignat}
 With the transformations
 \begin{align}
-    \textbf{u}_0 &= \text{E}(\bar{\textbf{v}}_c) - q\bar{\textbf{w}}\\
-    \textbf{u}_1 &= \text{E}(\bar{\textbf{v}}_c) + \bar{\textbf{w}}\\
-    \textbf{z}_i &= \text{E}(\bar{\textbf{h}}_e(\bar{\textbf{w}}))\\
-    \textbf{z}_e &= \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    \bar{\textbf{u}}_0 &= \text{E}(\bar{\textbf{v}}_c) - q\bar{\textbf{w}}\\
+    \bar{\textbf{u}}_1 &= \text{E}(\bar{\textbf{v}}_c) + \bar{\textbf{w}}
 \end{align}
-where $q=\text{E}(V_c/V_\mathscr{D})$, we are left with the system
+and the substitutions $\bar{\textbf{h}}_i=\text{E}(\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}}))$ and $q=\text{E}(V_c/V_\mathscr{D})$, we obtain the system
 \begin{alignat}{3}
-    \partial_t\textbf{u}_0 &= \textbf{z}_i &-q& \textbf{z}_e -(1+q)\textbf{A}\textbf{u}_0 \\
-    \partial_t\textbf{u}_1 &= \textbf{z}_i &+& \textbf{z}_e
+    \partial_t\bar{\textbf{u}}_0 &= \bar{\textbf{h}}_i &-q& \bar{\textbf{h}}_e -(1+q)\textbf{A}\bar{\textbf{u}}_0 \\
+    \partial_t\bar{\textbf{u}}_1 &= \bar{\textbf{h}}_i &+& \bar{\textbf{h}}_e
 \end{alignat}
-where the two equations are only decoupled if $\textbf{z}_{i/e}$ does not depend on $\textbf{u}_{0/1}$.
+where the two equations are implicitly coupled due to the dependence of $\bar{\textbf{h}}_{i/e}$ on $\textbf{u}_{0/1}$.
 
 \paragraph{Case 3: With Growth}
 
