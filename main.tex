@@ -194,6 +194,7 @@ pdfkeywords={},
 
 %---------------------------------------------------------------------------------------------------
 \subsection{The Cellular Space $\CS$}
+\label{subsec:cellular-space}
 This section aims to construct a space in which individual cells can be represented.
 We construct these notions purely from known biological behavioural principles.
 By formulating these concepts in abstract mathematical terms, we allow ourselves to cover a wide
@@ -203,6 +204,7 @@ fundamental effect can be taken into account.
 
 We assume that each individual cell lives in a set $C$ which describes all possible configurations
 of this single cell.
+We will therefore call this set the "cellular configuration space".
 Cellular systems are characterized by the fact that cells are in principle (although in
 practice sometimes more difficult) tracable through time and space.
 Depending on the cellular representation we might encounter two cells with identical parameters and
@@ -595,32 +597,50 @@ Carrying out these steps leads to
     \textbf{h}_{i,c}(\textbf{w})\frac{V_c}{V_\mathscr{D}}\delta(\textbf{x} - \textbf{x}_c)\text{dV}
     &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
     &+& \int\limits_\mathscr{D}\textbf{S}(\textbf{w})\text{dV}\\
-    &= &\sum\limits_c& V_c\textbf{h}_{i,c}(\bar{\textbf{w}}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})\\
-    &= &\sum\limits_c& \frac{V_c}{V_\mathscr{D}}\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    &= &\sum\limits_c& V_c\textbf{h}_{i,c}(\bar{\textbf{w}}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
     \label{eq:pool-model-case1-coarse-grained-result}
 \end{alignat}
 which is the direct combination of intra- and extracellular reactions.
 Note that the final integral vanishes due to our assumptions that $\textbf{S}(\textbf{w})$ only describes transport terms, leaving the total amount invariant.
-The first term can be understood as an expectation value $\text{E}(X_c)=\sum_cX_c$ of a product of two distributions over living cells $c\in\CS$ which we will use to rewrite equation~\eqref{eq:pool-model-case1-coarse-grained-result}.
+The first term can be understood in terms of an expectation value $\text{E}(X_c)=\sum_c X_c / N_\CS$ of a product of two distributions over living cells $c\in\CS$ which we will use to rewrite equation~\eqref{eq:pool-model-case1-coarse-grained-result}.
 In the general case where the distributions $V_c/V_\mathscr{D}$ and $\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}})$ are not independent, we obtain
 \begin{equation}
     \partial_t\bar{\textbf{w}} =
-    \text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
-    + \text{Cov}\left(\frac{V_c}{V_\mathscr{D}},\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}})\right)
+    N_\CS\text{E}\left(V_c\right)\text{E}(\textbf{h}_{i,c}({\bar{\textbf{w}}}))
+    + N_\CS\text{Cov}\left(V_c,\textbf{h}_{i,c}({\bar{\textbf{w}}})\right)
     + \bar{\textbf{h}}_e(\bar{\textbf{w}})
 \end{equation}
+
 which can be further reduced, assuming that the distribution of volumes $V_c$ and intracellular reactions is stochastically independent:
 \begin{alignat}{5}
     \partial_t\bar{\textbf{w}} &=
-    &\text{E}\left(\frac{V_c}{V_\mathscr{D}}\right)&\text{E}(\bar{\textbf{h}}_{i,c}({\bar{\textbf{w}}}))
+    &N_\CS\text{E}\left(V_c\right)&\text{E}(\textbf{h}_{i,c}({\bar{\textbf{w}}}))
     &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})\\
-    &= &q& \bar{\textbf{h}}_i(\textbf{w}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
+    &= &q& \textbf{h}_i(\textbf{w}) &+& \bar{\textbf{h}}_e(\bar{\textbf{w}})
 \end{alignat}
-We have used the expectation value to factorize the first term and $q=\text{E}(V_c/V_\mathscr{D})$ with $\bar{\textbf{h}}_i=\text{E}(\bar{\textbf{h}}_{i,c})$ to simplify notation.
-Using this concise notation, the final step shows that our equations reduce to an \ac{ode}.
+We have used the expectation value to factorize the first term and $q=N_\CS\text{E}(V_c)$ with $\textbf{h}_i=\text{E}(\textbf{h}_{i,c})$ to simplify notation.
+Using this concise notation, the final step shows that our equations reduce to a set of \acp{ode}.
 The value $q$ is the fraction of total bacterial volume compared to the volume of the domain $V_\mathscr{D}$.
 
+We can also reinterpret the sum in equation~\eqref{eq:pool-model-case1-coarse-grained-result} via a continuous measure using the probability to encounter a certain number of cells in the state $c\in C$.
+For this reason it is desirable to omit the cellular identity at this point, thus introducing the cellular density as a function $\rho:C\rightarrow\R$.
+In the continuum limit, the sum transitions into an integral over the cellular configuration space $C$ (see Section~\ref{subsec:cellular-space})
+\begin{equation}
+    \partial_t\bar{\textbf{w}}
+    = \int\limits_C N_\CS\rho(c)\textbf{h}_{i,c}(\bar{\textbf{w}})\text{d}c
+    + \bar{\textbf{h}}_e(\bar{\textbf{w}}).
+\end{equation}
+
+We can therefore interpret $\textbf{h}_{i,c}$ as a distribution of reaction functions and the integral
+
+\begin{equation}
+    F[h_c] = \int\limits_C N_\CS\rho(c)h_c\text{d}c
+\end{equation}
+
+as an operator acting on this space.
+
 \paragraph{Case 2: With Exchange}
+\textbf{TODO from here on the text has to adapted to the new expectation value formalism!}
 We follow all steps identically to the previous case, but do not assume that the exchange between intra- and extracellular compounds is fast resulting in
 \begin{alignat}{3}
     \partial_t\bar{\textbf{v}}_c &= &- &\textbf{A}\left(\bar{\textbf{v}}_c - \frac{V_c}{V_\mathscr{D}}\bar{\textbf{w}}\right) + \bar{\textbf{h}}_{i,c}(\bar{\textbf{v}}_c)\\
