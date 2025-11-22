@@ -505,6 +505,25 @@ $\iota\in\phi_t$}
     \item mathematically construct cost function
     \item take into account temporal component; at division event no cost for parents; then modify
         as difference to division event gets larger (this will yield a nice graph/figure)
+    \item We should be able to further extend this approach into a metric which is measure-based instead of counting pixels.
+        Even a probability measure could work. (probability of cell $\iota$ to be at this point, what about cell division?)
+\end{itemize}
+
+\textbf{Formalize the notion of the comparison metric $d(x,y)$}
+\begin{itemize}
+    \item Consider the space $X$ which contains cell masks encoded by colors (maybe even 3D possibly).
+    \item we want to asses if the constructed mapping $d:X\times X\rightarrow X, d(x,y)$ is a metric.
+    \begin{enumerate}
+        \item Distance to itself is zero: $d(x,x)=0$ \checkmark
+        \item Positivity: $x\neq y$ then $d(x,y)$ will only be zero if the parent penalty $p$ is zero.
+            If we introduce a time-dependent (monotonous) parent penalty $p(\Delta t)>0$ when $\Delta t>0$, we also retain this property.
+        \item Symmetry: \checkmark
+        \item Triangle inequality: This is true due to our individual treatment of cells and accounting for indices $\iota$.
+            Suppose that we have $d(x,y) > d(x,z) + d(z,y)$ for a combination of $x,y,z$.
+            Then this means that there is at least one pixel where the color value for $x,y$ are not matching but they are matching both for $x,z$ and $y,z$.
+            This is equivalent to the fact that the associated color value of $z$ is the parent cell of $x$ and $y$ and can not be true since the parent index was removed.
+    \end{enumerate}
+    \item Therefore this is a true metric considering the restructions to $p(t)$ above.
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------
