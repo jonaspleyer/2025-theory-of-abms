@@ -1,4 +1,4 @@
-\documentclass[referee,pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
 % \documentclass{article}
 
 \usepackage{amsmath}
@@ -12,21 +12,24 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{amsfonts}       % blackboard math symbols
 \usepackage[title]{appendix}%
+\usepackage{float}
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{makecell}
 \usepackage{lineno}
 \usepackage{microtype}      % microtypography
 \usepackage{mathrsfs}
+\usepackage{manyfoot}
+\usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{doi}
 \usepackage{acronym}
 \usepackage{listings}
 \usepackage{onimage}
+% \usepackage{svg}
 \usepackage{siunitx}
+% \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage[dvipsnames]{xcolor}
-
-\linenumbers
 
 % Color Palette
 % https://coolors.co/palette/2c6e49-4c956c-fefee3-ffc9b9-d68c45
@@ -64,7 +67,6 @@
 \raggedbottom
 
 \begin{document}
-% \maketitle
 
 \title[Mathematical Foundations of Cellular Agent-Based Models]{Mathematical Foundations of Cellular Agent-Based Models}
 
@@ -77,8 +79,8 @@
 %%  \sfx{IV}}\email{iauthor@gmail.com}
 %%=============================================================%%
 
-\author*[1]{\fnm{Jonas} \sur{Pleyer}}\email{jonas.pleyer@fdm.uni-freiburg.de}
-\author[1]{\fnm{Christian} \sur{Fleck}}\email{christian.fleck@fdm.uni-freiburg.de}
+\author[1]{\fnm{Jonas} \sur{Pleyer}}\email{jonas.pleyer@fdm.uni-freiburg.de}
+\author*[1]{\fnm{Christian} \sur{Fleck}}\email{christian.fleck@fdm.uni-freiburg.de}
 
 \affil*[1]{\orgname{Freiburg Center for Data-Analysis and Modeling}, \orgaddress{Ernst-Zermelo Str. 1}, \city{Freiburg im Breisgau}, \postcode{79104}, \country{Germany}}
 
@@ -91,17 +93,9 @@
     cell-sorting and cell-cell communication.
     Extending our theoretical work, we discuss the process of spatial and remporal coarse-graining.
 }
-\vfill
-
-% TABLE OF CONTENTS
-% Remove this before submission
-\pagebreak
-\tableofcontents
-\vfill
-\pagebreak
 
 % keywords can be removed
-\keywords{Individual-Based \and Cell \and Biology \and Dynamical System}
+\keywords{Individual-Based, Cell, Biology, Dynamical System}
 
 
 %###################################################################################################
