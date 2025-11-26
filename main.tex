@@ -1,19 +1,20 @@
-\documentclass{article}
-
-\usepackage{arxiv}
+\documentclass[referee,pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+% \documentclass{article}
 
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-\usepackage[hidelinks]{hyperref}       % hyperlinks
+% \usepackage[hidelinks]{hyperref}       % hyperlinks
+\usepackage{hyperref}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{amsfonts}       % blackboard math symbols
-\usepackage{float}
+\usepackage[title]{appendix}%
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{makecell}
+\usepackage{lineno}
 \usepackage{microtype}      % microtypography
 \usepackage{mathrsfs}
 \usepackage{graphicx}
@@ -21,11 +22,11 @@
 \usepackage{acronym}
 \usepackage{listings}
 \usepackage{onimage}
-\usepackage{svg}
 \usepackage{siunitx}
-\usepackage{tabularx}
 \usepackage{tikz}
 \usepackage[dvipsnames]{xcolor}
+
+\linenumbers
 
 % Color Palette
 % https://coolors.co/palette/2c6e49-4c956c-fefee3-ffc9b9-d68c45
@@ -53,57 +54,6 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\CS}{\mathscr{C}}
 
-\title{
-    Mathematical Foundations of\\
-    Cellular Agent-Based Models
-}
-
-%\date{September 9, 1985}	% Here you can change the date presented in the paper title
-%\date{} 					% Or removing it
-
-\author{
-    \href{https://orcid.org/0009-0001-0613-7978}{
-        \includegraphics[scale=0.06]{orcid.pdf}
-        \hspace{1mm}Jonas Pleyer
-    }
-    \thanks{
-        \href{https://jonas.pleyer.org}{jonas.pleyer.org},
-        \href{https://cellular-raza.com}{cellular-raza.com}
-    }\\
-	Freiburg Center for Data-Analysis and Modeling\\
-	University of Freiburg\\
-	\texttt{jonas.pleyer@fdm.uni-freiburg.de} \\
-	%% examples of more authors
-	\And
-	\href{https://orcid.org/0000-0002-6371-4495}{
-        \includegraphics[scale=0.06]{orcid.pdf}
-        \hspace{1mm}Christian Fleck
-    }\\
-	Freiburg Center for Data-Analysis and Modeling\\
-	University of Freiburg
-}
-
-% Uncomment to remove the date
-%\date{}
-
-% Uncomment to override  the `A preprint' in the header
-\renewcommand{\headeright}{Preprint}
-%\renewcommand{\undertitle}{Technical Report}
-\renewcommand{\shorttitle}{Mathematical Foundations of Cellular Agent-Based Models}
-
-\usepackage{enumitem}
-\setlist{nolistsep}
-
-%%% Add PDF metadata to help others organize their library
-%%% Once the PDF is generated, you can check the metadata with
-%%% $ pdfinfo template.pdf
-\hypersetup{
-pdftitle={Mathematical Foundations of Cellular Agent-Based Models},
-pdfsubject={q-bio.NC, q-bio.QM},
-pdfauthor={Jonas Pleyer, Christian Fleck},
-pdfkeywords={},
-}
-
 % Define definition, example, lemma, proof and theorem.
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
@@ -111,33 +61,36 @@ pdfkeywords={},
 \newtheorem{corollary}[definition]{Corollary}
 \newtheorem{theorem}[definition]{Theorem}
 
-% Change numbering of equations
-% \numberwithin{equation}{section}
-
-% MAKE TITLES IN THEOREMS BOLD
-\makeatletter
-\def\th@plain{%
-  \thm@notefont{}% same as heading font
-  \itshape % body font
-}
-\def\th@definition{%
-  \thm@notefont{}% same as heading font
-  \normalfont % body font
-}
-\makeatother
+\raggedbottom
 
 \begin{document}
-\maketitle
+% \maketitle
+
+\title[Mathematical Foundations of Cellular Agent-Based Models]{Mathematical Foundations of Cellular Agent-Based Models}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg}
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author*[1]{\fnm{Jonas} \sur{Pleyer}}\email{jonas.pleyer@fdm.uni-freiburg.de}
+\author[1]{\fnm{Christian} \sur{Fleck}}\email{christian.fleck@fdm.uni-freiburg.de}
+
+\affil*[1]{\orgname{Freiburg Center for Data-Analysis and Modeling}, \orgaddress{Ernst-Zermelo Str. 1}, \city{Freiburg im Breisgau}, \postcode{79104}, \country{Germany}}
 
 %###################################################################################################
-\begin{abstract}
+\abstract{
     In this work, we lay out fundamental theoretical concepts of \ac{ib} \acp{abm} and argue why
     classical \acp{ca} should not generally be considered \ac{ib} \acp{abm}.
     We show that these concepts can encapsulate a wide class of available numerical simulation tools
     Furthermore, we present precise mathematical formulations of widely used examples such as
     cell-sorting and cell-cell communication.
     Extending our theoretical work, we discuss the process of spatial and remporal coarse-graining.
-\end{abstract}
+}
 \vfill
 
 % TABLE OF CONTENTS
@@ -150,10 +103,11 @@ pdfkeywords={},
 % keywords can be removed
 \keywords{Individual-Based \and Cell \and Biology \and Dynamical System}
 
+
 %###################################################################################################
 \section{Introduction}
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/concept-figure.png}
     \caption{TODO explain concept Figure}
@@ -579,7 +533,7 @@ The term $\textbf{S}(\textbf{w})$ is supposed to model transport of the extracel
 does not alter the total amount, i.e. $\int\textbf{S}(\textbf{w})\text{dV}=0$.
 Table~\ref{table:overview-model-aspects} shows a summary of the model aspects that are treated with
 this framework.
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{lclll}
@@ -718,7 +672,7 @@ In addition we again assume fast exchange and obtain the equations
 The function $f(n,b)$ describes the nutrient consumption by the bacterial metabolism and $d$ is the
 ratio of diffusion constants.
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \def\arraystretch{1.5}
     \begin{tabular}{clll}
@@ -740,7 +694,7 @@ ratio of diffusion constants.
 \paragraph{Coarse-Graining}
 Combine multiple cells into one circle \cite{Graham1998}
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \begin{tikzonimage}[width=0.158\textwidth]
         {figures/sim-branching/diffusion-80/discretization-nvoxels-000666.png}
@@ -863,7 +817,8 @@ Combine multiple cells into one circle \cite{Graham1998}
 
 %---------------------------------------------------------------------------------------------------
 \newpage
-\bibliographystyle{IEEEtran}
+% \bibliographystyle{IEEEtran}
+
 \bibliography{references}
 
 \renewcommand{\thesection}{}
