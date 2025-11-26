@@ -100,8 +100,11 @@
 
 %###################################################################################################
 \section{Introduction}
+\subsection{Cells as the Fundamental Building Blocks of Nature}
+\subsection{Individual-Based Mathematical Treatment}
+\subsection{Overarching Principles}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/concept-figure.png}
     \caption{TODO explain concept Figure}
@@ -121,14 +124,14 @@
     \item Discuss how to "throw away" certain parts of this modeling approach (i.e. uniqueness)
 \end{itemize}
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \begin{tabular}{cll}
         & \textbf{Modeling Aspect} & \textbf{Examples}\\
         \toprule
-        (C) & Mechanics & Spherical, Rod, Hexagonal, Puzlle-shaped\\
-        (C) & Intracellular Reactions & \\
-        (C) & Cycle & Division\\
+        (C) & Mechanics & Spherical, Rod, Rectangular, Hexagonal, Puzlle-shaped\\
+        (C) & Intracellular Reactions & Metabolism, Gene-Regulatory Networks\\
+        (C) & Cycle & Phases, Division, Death\\
         \midrule
         (CC) & Physical Interaction & Adhesion, Friction, Collisions\\
         (CC) & Contact Reactions & Gap Junctions\\
@@ -240,8 +243,8 @@ past.
     of the index $\iota$ in a single cellular state.
 \end{definition}
 
-Cell division~\cite{bhlitem268752} is a process during which a cell transforms either via binary
-(or multiple) fission~\cite{Biov2014} or mitosis~\cite{Ilowiecki1981,von1835resp} and
+Cell division~\citep{bhlitem268752} is a process during which a cell transforms either via binary
+(or multiple) fission~\citep{Biov2014} or mitosis~\citep{Ilowiecki1981,von1835resp} and
 meiosis~\todo{CITATION} into separate
 daughter cells.
 To describe cell division, the dynamics behind this transition needs to be taken into account.
@@ -297,8 +300,8 @@ To indicate the end of the division process a division criterion is used.
 
 Another important process is that of cell death which is similarly as cell-division not instantanous
 but occurs over a period of time.
-Death schemes are categoritzed into programmed cell-death, also known as apoptosis~\cite{Kerr1965}
-and necrosis~\cite{Gerschenson2001} which occurrs due to damage from external effects.
+Death schemes are categoritzed into programmed cell-death, also known as apoptosis~\citep{Kerr1965}
+and necrosis~\citep{Gerschenson2001} which occurrs due to damage from external effects.
 In principle, these processes take time in order to commence and the cell may interact with its
 environment (ie. through secretion) during this stage.
 Such transitions can be described by \todo{fill this} and will be discussed in
@@ -429,13 +432,13 @@ $\iota\in\phi_t$}
 \section{Applications}
 %---------------------------------------------------------------------------------------------------
 \subsection{Estimating Parameters of individual Rod-shaped bacteria}
-
+\subsection*{Unserted List of Ideas}
 \begin{itemize}
-    \item Link to previous section
-    \item Treat \ac{abm} as black-box model $\Omega(x, t)$
-    \item Estimate parameters by comparing output to data
+    \item dynamical system factorizes through some subspace where we interchange the order of
+        vertices; this exchange is problematic for numerical implementations and only of theoretical nature
 \end{itemize}
 
+\subsubsection{Motivation}
 \begin{itemize}
     \item mathematically motivate approach: compare simulation at points $\{t_i\}$ with data
     \item this requires us to compare all variables (positions, extracellular nutrients etc.)
@@ -457,6 +460,16 @@ $\iota\in\phi_t$}
         Even a probability measure could work. (probability of cell $\iota$ to be at this point, what about cell division?)
 \end{itemize}
 
+\subsubsection{Mathematical \& Computational Model}
+\begin{itemize}
+    \item Use contents from other paper
+    \item show that this does not really depend on the underlying dynamics but rather only on the
+        spatial representation
+    \item perform all analysis with "generalized model for elongated bacteria"
+    \item actually should also work for non-vertex approach (such as spline)
+\end{itemize}
+
+\subsubsection{Parameter Estimation: Defining a Cost Function}
 \textbf{Formalize the notion of the comparison metric $d(x,y)$}
 \begin{itemize}
     \item Consider the space $X$ which contains cell masks encoded by colors (maybe even 3D possibly).
@@ -474,12 +487,32 @@ $\iota\in\phi_t$}
     \item Therefore this is a true metric considering the restructions to $p(t)$ above.
 \end{itemize}
 
+\subsubsection{Relation to Identifiability Analysis}
+Parameter estimation usually uses weighted sum of residuals
+\begin{equation}
+    \chi^2_\text{res}(p) = \sum\limits_{k=1}^m\sum\limits_{l=1}^{d_k}\left(\frac{y_{kl}^D - g_k(p,t_l)}{\sigma^D_{kl}}\right)
+\end{equation}
+where $\sigma_{kl}^D$ is the measurement error for datapoint $y_{kl}^D$ and time point $t_l$.
+The most common estimator is the maximum likelihood estimator
+\begin{equation}
+    \tilde{p} = \text{arg min}\left[\chi^2_\text{res}(p)\right].
+\end{equation}
+
+\begin{definition}[Structural Identifiability]
+    A model is \textit{structurally identifiable} if a unique parametrization exists for any given model output.
+    A parameter $p_i$ is called \textit{globally structurally identifiable} if for every parameter vector $\textbf{p}$, it holds
+    \begin{equation}
+        y(p)=y(p') \Rightarrow p_i=p_i'.
+    \end{equation}
+\end{definition}
+
+
 %---------------------------------------------------------------------------------------------------
 \subsection{TODO find one more example for parameter estimation here}
 \begin{itemize}
-    \item \cite{Jin2022} 2 approaches: bottom-up and top-down, ("Studies of self-assembling systems
+    \item \citep{Jin2022} 2 approaches: bottom-up and top-down, ("Studies of self-assembling systems
         have also benefited from top-down approaches.")
-    \item \cite{Guenza2025} performance because of: less degrees of freedom; coarse-grained
+    \item \citep{Guenza2025} performance because of: less degrees of freedom; coarse-grained
         potentials are less steep
 \end{itemize}
 
@@ -628,7 +661,7 @@ With the transformations
     \bar{\textbf{u}}_0 &= \text{E}(\bar{\textbf{v}}_c) - q\bar{\textbf{w}}\\
     \bar{\textbf{u}}_1 &= \text{E}(\bar{\textbf{v}}_c) + \bar{\textbf{w}}
 \end{align}
-and the substitutions $\bar{\textbf{h}}_i=\text{E}(\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}}))$ and $q=\text{E}(V_c/V_\mathscr{D})$, we obtain the system
+and the substitutions $\bar{\textbf{h}}_i=\text{E}(\bar{\textbf{h}}_{i,c}(\bar{\textbf{w}}))$ and $q=N_\CS\text{E}(V_c/V_\mathscr{D})$, we obtain the system
 \begin{alignat}{3}
     \partial_t\bar{\textbf{u}}_0 &= \bar{\textbf{h}}_i &-q& \bar{\textbf{h}}_e -(1+q)\textbf{A}\bar{\textbf{u}}_0 \\
     \partial_t\bar{\textbf{u}}_1 &= \bar{\textbf{h}}_i &+& \bar{\textbf{h}}_e
@@ -644,19 +677,22 @@ We assume that any division event $\gamma(c)=(c_1,c_2)$ will lead to no loss or 
 Therefore the dynamics of $N$ do not depend on $\gamma$ and $\bar{\gamma}$ but only on $h_{g,c}$.
 We denote $\sum_c h_{g,c}=H_g$ and again do not consider any spatial distribution effects or movement by the cells.
 In addition we again assume fast exchange and obtain the equations
-\begin{alignat}{5}
-    \partial_tV &= &&&\sum\limits_c &h_{g,c}(\textbf{w}, V_c)\\
-    \partial_t{\textbf{w}} &= &\sum\limits_c \frac{V_c}{V_\mathscr{D}} &\textbf{T}_e\textbf{h}_x(\textbf{v}_c,\textbf{w})\delta(\textbf{x}-\textbf{x}_c) &+& \textbf{h}_e(\textbf{w})\\
-    \partial^2_t\textbf{x}_c &= &\sum\limits_{s\neq c}& \textbf{F}_\CS(c,s) + \textbf{F}_\mathscr{D}(c)
-\end{alignat}
+\begin{align}
+    \partial_tV &= H_g(\textbf{w},V)\\
+    \partial_t{\textbf{v}_c} &=  - \textbf{T}_i\textbf{h}_x(\textbf{v}_c,\textbf{w}|_{\textbf{x}_c}) + \textbf{h}_{i,c}(\textbf{v}_c, V_c)\\
+    \partial_t{\textbf{w}} &= \sum\limits_c \frac{V_c}{V_\mathscr{D}} \textbf{T}_e\textbf{h}_x(\textbf{v}_c,\textbf{w})\delta(\textbf{x}-\textbf{x}_c) + \textbf{h}_e(\textbf{w})\\
+    \partial^2_t\textbf{x}_c &= \sum\limits_{s\neq c} \textbf{F}_\CS(c,s) + \textbf{F}_\mathscr{D}(c)
+\end{align}
 
 
 %---------------------------------------------------------------------------------------------------
 \newpage
 \subsection{The Fractal Structure in Branching Patterns of \textit{Bacillus Subtilis}}
+We set out to derive a set of equations to describe a simple bacterial system which grows spatially by taking up nutrients.
+
 
 \begin{itemize}
-    \item PDE models of bacterial branching \cite{Kawasaki1997,Matsushita1998}
+    \item PDE models of bacterial branching \citep{Kawasaki1997,Matsushita1998}
 \end{itemize}
 
 \begin{alignat}{5}
@@ -686,7 +722,7 @@ ratio of diffusion constants.
 \end{table}
 
 \paragraph{Coarse-Graining}
-Combine multiple cells into one circle \cite{Graham1998}
+Combine multiple cells into one circle \citep{Graham1998}
 
 \begin{figure}[h]
     \centering
@@ -801,11 +837,11 @@ Combine multiple cells into one circle \cite{Graham1998}
 \subsection{Cell Sorting}
 
 \begin{itemize}
-    \item \cite{Volfson2008} TODO; continuum model, equations of nematodynamics \cite{Doi1988-ad}
-    \item \cite{Joshi2019} "The interplay between activity and filament flexibility determines the
+    \item \citep{Volfson2008} TODO; continuum model, equations of nematodynamics \citep{Doi1988-ad}
+    \item \citep{Joshi2019} "The interplay between activity and filament flexibility determines the
         emergent properties of active nematics"
-    \item \cite{Jin2020} "Influence of cell interaction forces on growth of bacterial biofilms"
-    \item \cite{Ingham2008} "Swarming and complex pattern formation in Paenibacillus vortex studied
+    \item \citep{Jin2020} "Influence of cell interaction forces on growth of bacterial biofilms"
+    \item \citep{Ingham2008} "Swarming and complex pattern formation in Paenibacillus vortex studied
         by imaging and tracking cells"
 \end{itemize}
 
